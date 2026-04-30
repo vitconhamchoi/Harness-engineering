@@ -41,12 +41,33 @@ Repo này dùng để:
 
 ## Cấu trúc
 
+### A. Tài liệu giải thích / framework tư duy
+Nhóm này dùng để **đọc hiểu khái niệm**, không phải cứ copy nguyên vào repo dự án.
+
 - `README.md` - tổng quan và roadmap
-- `docs/AGENTS.md` - quy tắc vận hành agent/harness
+- `docs/implementation-mapping.md` - phân biệt Harness Engineering với implementation cụ thể
+- `docs/implementation-comparison.md` - so sánh OpenSpec, Spec-Kit, Recursive Mode
+- `docs/failure-taxonomy.md` - phân loại lỗi agent theo từng tầng harness
+- `docs/evolution-path.md` - lộ trình nâng harness từ nhẹ đến production-grade
+
+### B. Tài liệu template / playbook dùng để áp dụng
+Nhóm này là **tài liệu vận hành**, có thể copy hoặc adapt vào dự án thật.
+
+- `docs/AGENTS.md` - rule tổng quát cho agent/harness
 - `docs/prompt-examples.md` - prompt mẫu theo nhóm use case
 - `docs/workflow-templates.md` - template workflow cho audit, market, config, project review
 - `docs/security-review-template.md` - khung review security thực dụng
 - `docs/research-template.md` - khung research có source discipline
+
+### C. Ví dụ áp vào dự án thật
+Nhóm này là **mẫu project-specific**, gần nhất với thứ sẽ nhét vào repo thật.
+
+- `examples/todolist-backend/AGENTS.md`
+- `examples/todolist-backend/docs/debug-workflow.md`
+- `examples/todolist-backend/docs/review-checklist.md`
+- `examples/todolist-backend/docs/prompt-examples.md`
+
+### D. Repo hygiene
 - `CONTRIBUTING.md` - nguyên tắc đóng góp
 - `LICENSE` - giấy phép MIT
 - `.gitignore` - ignore cơ bản
@@ -79,12 +100,54 @@ Repo này dùng để:
 
 ## Cách dùng
 
-1. đọc `docs/AGENTS.md`
+### Nếu mày chỉ muốn hiểu khái niệm
+Đọc theo thứ tự:
+1. `README.md`
+2. `docs/implementation-mapping.md`
+3. `docs/failure-taxonomy.md`
+4. `docs/evolution-path.md`
+5. `docs/implementation-comparison.md`
+
+### Nếu mày muốn áp vào dự án thật
+Không phải copy cả repo này vào project.
+Cách đúng thường là:
+
+1. đọc phần giải thích để hiểu harness cần giải quyết cái gì
 2. chọn template phù hợp trong `docs/`
-3. chọn prompt phù hợp trong `docs/prompt-examples.md`
-4. nếu có project thật, tạo một pack riêng trong `examples/<project-name>/`
-5. chạy `scripts/validate.sh`
-6. bổ sung use case mới khi cần
+3. tạo bộ file riêng cho project của mày
+4. copy hoặc adapt các file cần thiết vào repo dự án thật
+
+### Thứ thường copy vào dự án thật
+Thông thường mày sẽ copy hoặc chỉnh lại các file kiểu này:
+- `AGENTS.md`
+- `docs/debug-workflow.md`
+- `docs/review-checklist.md`
+- `docs/prompt-examples.md`
+- thêm security/research template nếu dự án cần
+
+### Thứ thường KHÔNG cần copy nguyên vào dự án
+Mấy file mang tính giải thích / framework tư duy thường không cần nhét nguyên vào repo project:
+- `docs/implementation-mapping.md`
+- `docs/implementation-comparison.md`
+- `docs/failure-taxonomy.md`
+- `docs/evolution-path.md`
+
+Mấy file này để người vận hành đọc và hiểu cách thiết kế harness, không phải tài liệu runtime cho project.
+
+### Quy trình áp thực tế cho một dự án
+Ví dụ với `todolist-backend`:
+
+1. tạo `AGENTS.md` trong repo backend
+2. thêm `docs/debug-workflow.md`
+3. thêm `docs/review-checklist.md`
+4. thêm `docs/prompt-examples.md`
+5. chỉnh các file đó theo domain của project
+6. từ đó về sau, mọi task giao cho AI sẽ bám các file này
+
+### Nói cực ngắn
+- **Tài liệu giải thích** = để đọc hiểu
+- **Tài liệu template** = để adapt
+- **Tài liệu example project** = thứ gần nhất với file sẽ nhét vào repo thật
 
 ## Harness áp được vào những mảng nào
 
