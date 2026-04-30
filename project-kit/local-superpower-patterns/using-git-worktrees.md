@@ -1,5 +1,8 @@
 # Using Git Worktrees
 
+## Đây là gì
+Đây là local pattern doc, không phải official Superpowers command/plugin.
+
 ## Dùng khi nào
 - làm nhiều task song song
 - cần branch isolation

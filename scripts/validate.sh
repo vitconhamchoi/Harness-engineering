@@ -57,8 +57,8 @@ ok "evolution-path.md present"
 [ -f "$ROOT/project-kit/openspec/README.md" ] || fail "Missing project-kit/openspec/README.md"
 ok "project-kit/openspec present"
 
-[ -f "$ROOT/project-kit/superpowers/README.md" ] || fail "Missing project-kit/superpowers/README.md"
-ok "project-kit/superpowers present"
+[ -f "$ROOT/project-kit/local-superpower-patterns/README.md" ] || fail "Missing project-kit/local-superpower-patterns/README.md"
+ok "project-kit/local-superpower-patterns present"
 
 [ -f "$ROOT/examples/todolist-backend/AGENTS.md" ] || fail "Missing examples/todolist-backend/AGENTS.md"
 ok "todolist-backend AGENTS example present"
@@ -102,11 +102,11 @@ ok "Failure taxonomy check passed"
 grep -q "Level 0. Raw prompting" "$ROOT/evolution-path.md" || fail "evolution-path.md missing expected maturity model"
 ok "Evolution path check passed"
 
-grep -q "spec + memory" "$ROOT/project-kit/openspec/README.md" || fail "project-kit openspec missing expected wording"
+grep -q "npm install -g @fission-ai/openspec@latest" "$ROOT/project-kit/openspec/README.md" || fail "project-kit openspec missing install command"
 ok "OpenSpec kit check passed"
 
-grep -q "design + execution skills" "$ROOT/project-kit/superpowers/README.md" || fail "project-kit superpowers missing expected wording"
-ok "Superpowers kit check passed"
+grep -q "not official Superpowers package/plugin\|không phải official Superpowers package/plugin" "$ROOT/project-kit/local-superpower-patterns/README.md" || fail "local superpower patterns missing disclaimer"
+ok "Local superpower patterns check passed"
 
 grep -q "offline-first" "$ROOT/examples/todolist-backend/AGENTS.md" || fail "todolist-backend AGENTS missing expected wording"
 ok "todolist-backend AGENTS check passed"

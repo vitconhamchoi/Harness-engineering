@@ -1,5 +1,8 @@
 # Subagent-driven Development
 
+## Đây là gì
+Đây là local pattern doc, không phải official Superpowers command/plugin.
+
 ## Dùng khi nào
 - task đủ lớn để chia thành nhiều phần độc lập
 - cần nhiều worker/sub-agent đọc chung spec nhưng làm khác phần

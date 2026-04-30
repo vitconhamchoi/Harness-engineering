@@ -1,14 +1,21 @@
-# OpenSpec
+# OpenSpec (real external tool)
 
-Phần này đại diện cho lớp **spec + memory** trong một harness.
+OpenSpec ở đây được hiểu là **tool thật từ bên ngoài**, không phải mấy file markdown trong repo này.
 
-## Vai trò
-- lưu spec cho từng thay đổi
-- giữ context ngoài chat history
-- làm source-of-truth cho requirement, design, và tasks
-- archive thay đổi đã hoàn tất
+## Cài đặt
 
-## Cấu trúc điển hình trong project thật
+```bash
+npm install -g @fission-ai/openspec@latest
+```
+
+## Khởi tạo trong project
+
+```bash
+cd my-project
+openspec init
+```
+
+## Sau khi init thường sẽ có cấu trúc kiểu
 
 ```text
 openspec/
@@ -22,13 +29,18 @@ openspec/
   archive/
 ```
 
-## Dùng thế nào
-Trong dự án thật:
-1. khởi tạo OpenSpec
-2. tạo change proposal
-3. review proposal
+## Vai trò
+- lưu spec cho từng thay đổi
+- giữ context ngoài chat history
+- làm source-of-truth cho requirement, design, tasks
+- archive thay đổi đã hoàn tất
+
+## Workflow thực tế
+1. tạo proposal cho thay đổi mới
+2. review proposal
+3. refine design và tasks
 4. dùng spec làm context cho execution
 5. archive sau khi xong
 
 ## Ghi chú
-Đây là lớp quản lý tri thức và boundary của thay đổi, không phải phần execution skill.
+Các file template trong thư mục này chỉ là ví dụ cấu trúc và nội dung. Chúng **không thay thế việc cài OpenSpec thật**.

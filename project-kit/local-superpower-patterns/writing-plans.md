@@ -1,5 +1,8 @@
 # Writing Plans
 
+## Đây là gì
+Đây là local pattern doc, không phải official Superpowers command/plugin.
+
 ## Dùng khi nào
 - đã có hướng làm tương đối rõ
 - cần bẻ nhỏ thành task ngắn, verify được

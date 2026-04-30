@@ -1,5 +1,8 @@
 # TDD
 
+## Đây là gì
+Đây là local pattern doc, không phải official Superpowers command/plugin.
+
 ## Dùng khi nào
 - thay đổi có behavior rõ ràng
 - bug có thể tái hiện
