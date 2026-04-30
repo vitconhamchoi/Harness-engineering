@@ -1,8 +1,6 @@
 # Harness Engineering
 
-Harness Engineering là cách tổ chức thêm các lớp hỗ trợ xung quanh AI agent để việc phân tích, lập kế hoạch, triển khai và kiểm tra trong dự án phần mềm diễn ra ổn định hơn.
-
-Mục tiêu của nó là giảm việc agent làm theo cảm tính của từng phiên chat, đồng thời giữ yêu cầu, quy trình và tiêu chí kiểm chứng ở trạng thái rõ ràng hơn.
+Harness Engineering là cách thêm lớp điều phối quanh AI agent để agent làm việc theo quy trình rõ hơn, giữ ngữ cảnh tốt hơn và tự kiểm tra trước khi kết thúc.
 
 ## Diagram
 
@@ -12,16 +10,16 @@ Người dùng
    ▼
 Harness
    ├─ Hướng dẫn riêng của dự án
-   │  └─ ví dụ: AGENTS.md, docs/
+   │  └─ AGENTS.md, docs/
    │
    ├─ Đặc tả thay đổi
-   │  └─ ví dụ công cụ: OpenSpec
+   │  └─ OpenSpec
    │
    ├─ Quy trình làm việc của agent
-   │  └─ ví dụ công cụ / framework: Superpowers
+   │  └─ Superpowers
    │
    └─ Kiểm chứng
-   │  └─ ví dụ: test, build, lint, review
+   │  └─ test, build, lint, CI gate
    │
    ▼
 Agent
@@ -32,113 +30,156 @@ Mã nguồn và công cụ
 
 ## Khái niệm chính
 
-- **Model**: mô hình ngôn ngữ, tức lõi sinh câu trả lời và suy luận.
-- **Agent**: hệ thống dùng model làm bộ não, đồng thời có thêm khả năng đọc file, gọi công cụ, sửa mã, chạy lệnh và làm việc nhiều bước.
-- **Harness**: lớp bao quanh agent để nạp ngữ cảnh, áp quy tắc, gắn quy trình và buộc kiểm chứng.
+- **Model**: lõi suy luận và sinh câu trả lời.
+- **Agent**: hệ thống dùng model, đồng thời có tool để đọc file, sửa mã và chạy lệnh.
+- **Harness**: lớp bao quanh agent để nạp ngữ cảnh, gắn quy trình và áp kiểm chứng.
 
-**Harness không phải agent. Agent cũng không phải model.**
+**Harness không phải agent. Agent không phải model.**
 
-## Bốn phần của harness
+## 1. Hướng dẫn riêng của dự án
+Dùng để nói cho agent biết repo này phải được xử lý như thế nào.
 
-### 1. Hướng dẫn riêng của dự án
-Cho agent biết repo cụ thể này phải được xử lý như thế nào.
-
-Ví dụ:
+Ví dụ file:
 - `AGENTS.md`
-- tài liệu prompt
-- tài liệu workflow
-- tài liệu review
+- `docs/prompt-examples.md`
+- `docs/workflow-templates.md`
+- `docs/security-review-template.md`
 
-Trong repo này:
+Ví dụ trong repo này:
 - `examples/project-root/AGENTS.md`
 - `examples/project-root/docs/`
 
-### 2. Đặc tả thay đổi
-Giữ yêu cầu, thiết kế, đầu việc và lịch sử thay đổi ra ngoài phần chat.
+## 2. Đặc tả thay đổi
+Dùng để giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
 
-Đây là nơi trả lời các câu hỏi như:
-- thay đổi này nhằm giải quyết vấn đề gì?
-- phạm vi thay đổi là gì?
-- hướng thiết kế kỹ thuật là gì?
-- cần làm những đầu việc nào?
-- yêu cầu chi tiết và tình huống cần đáp ứng là gì?
+Ví dụ cấu trúc:
+```text
+openspec/
+  changes/
+    add-login/
+      proposal.md
+      design.md
+      tasks.md
+      specs/
+        requirements.md
+  changes/archive/
+```
 
-Ví dụ cấu trúc thường gặp:
-- `openspec/changes/<ten-thay-doi>/proposal.md`: mô tả mục tiêu và phạm vi thay đổi
-- `openspec/changes/<ten-thay-doi>/design.md`: hướng thiết kế kỹ thuật
-- `openspec/changes/<ten-thay-doi>/tasks.md`: danh sách đầu việc cần thực hiện
-- `openspec/changes/<ten-thay-doi>/specs/requirements.md`: yêu cầu chi tiết
-- `openspec/changes/archive/`: nơi lưu các thay đổi đã hoàn tất
+Ý nghĩa file:
+- `proposal.md`: vì sao cần thay đổi này
+- `design.md`: hướng thiết kế kỹ thuật
+- `tasks.md`: các bước triển khai
+- `requirements.md`: yêu cầu chi tiết
 
-Trong tầng này:
-- **OpenSpec** là một công cụ cụ thể để quản lý đặc tả
+Cài và dùng OpenSpec:
+```bash
+npm install -g @fission-ai/openspec@latest
+cd /path/to/my-project
+openspec init
+```
 
-Trong repo này:
+Lệnh chính:
+- `/opsx:propose <ten-thay-doi>`
+- `/opsx:apply`
+- `/opsx:archive`
+- `openspec update`
+
+Ví dụ trong repo này:
 - `examples/project-root/openspec/`
 
-### 3. Quy trình làm việc của agent
-Cải thiện cách agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát.
+## 3. Quy trình làm việc của agent
+Dùng để buộc agent làm việc theo bước, không nhảy vào code bừa.
 
-Trong tầng này:
-- **Superpowers** là plugin / framework giúp agent làm việc theo workflow mạnh hơn
-
-### 4. Kiểm chứng
-Mục tiêu của phần này là không để agent chỉ nói bằng miệng rằng đã xong.
-
-Kiểm chứng thường diễn ra theo các bước sau:
-
-#### Bước 1. Đặt quy tắc hoàn thành
-Trong hướng dẫn của project phải ghi rõ agent không được kết luận hoàn tất nếu chưa có kết quả kiểm tra.
-
-Ví dụ:
-- không được nói đã xong nếu chưa chạy test
-- không được chốt thay đổi nếu build còn lỗi
-- phải kèm kết quả kiểm tra trong báo cáo cuối
-
-#### Bước 2. Buộc agent tự chạy lệnh kiểm tra
-Agent phải dùng tool hoặc shell để tự chạy các lệnh kiểm tra, thay vì để con người chạy tay.
-
-Ví dụ:
-- Spring Boot: `./mvnw test`, `./mvnw verify`
-- Gradle: `./gradlew test`, `./gradlew build`
-- Node.js: `npm test`, `npm run build`, `npm run lint`
-- .NET: `dotnet test`, `dotnet build`
-
-Nếu các lệnh này thất bại thì agent không được kết luận là thay đổi đã hoàn tất.
-
-#### Bước 3. Gắn bước kiểm tra vào workflow
-Workflow phải có checkpoint kiểm tra trước khi kết thúc.
-
-Ví dụ:
+Ví dụ workflow:
 1. phân tích yêu cầu
-2. lập kế hoạch
-3. sửa mã
-4. chạy test / build / lint
-5. rà soát lại kết quả
-6. chỉ sau đó mới được kết luận hoàn tất
+2. viết kế hoạch
+3. sửa mã theo từng bước
+4. chạy kiểm tra
+5. review lại kết quả
 
-#### Bước 4. Dùng chặn kỹ thuật ở CI
-Đây là lớp chặn cứng, không phụ thuộc vào việc agent có trung thực hay không.
+Một cách triển khai phần này là **Superpowers**.
 
-Ví dụ cách làm:
-- tạo pipeline CI để chạy test, build, lint
-- bật branch protection trên GitHub hoặc GitLab
-- cấu hình required status checks
-- không cho merge nếu các check chưa xanh
+Ví dụ cài Superpowers:
 
-Ví dụ thực tế với GitHub:
-1. tạo GitHub Actions chạy `./mvnw test` hoặc lệnh tương đương
-2. bật branch protection cho `main`
-3. yêu cầu PR phải pass các check bắt buộc
-4. nếu CI fail thì PR không merge được, dù agent có nói xong
+### Claude Code
+```text
+/plugin install superpowers@claude-plugins-official
+```
 
-#### Bước 5. Giữ báo cáo cuối có bằng chứng
-Báo cáo cuối của agent nên nêu rõ:
-- đã chạy lệnh gì
-- lệnh nào pass
-- lệnh nào fail
-- còn giới hạn gì chưa kiểm tra được
+hoặc:
 
-Tóm lại, phần kiểm chứng không dựa vào việc con người tự chạy tay.
-Nó dựa vào việc agent tự chạy lệnh kiểm tra, workflow không cho bỏ qua bước verify, và CI chặn merge nếu chưa đạt.
+```text
+/plugin marketplace add obra/superpowers-marketplace
+/plugin install superpowers@superpowers-marketplace
+```
 
+### Cursor Agent
+```text
+/add-plugin superpowers
+```
+
+Ví dụ lệnh / workflow thường gặp:
+- `/brainstorm`
+- `/write-plan`
+- `/execute-plan`
+
+Ý nghĩa thực tế:
+- `/brainstorm`: chốt yêu cầu và hướng làm trước khi code
+- `/write-plan`: bẻ công việc thành bước nhỏ
+- `/execute-plan`: thực hiện kế hoạch theo từng bước có checkpoint
+
+## 4. Kiểm chứng
+Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
+
+Cơ chế thực tế gồm 4 bước:
+
+### Bước 1. Đặt rule trong project
+Ví dụ trong `AGENTS.md`:
+```md
+- Không được kết luận hoàn tất nếu chưa chạy test hoặc build.
+- Báo cáo cuối phải ghi rõ các lệnh kiểm tra đã chạy.
+- Nếu lệnh kiểm tra thất bại, phải báo fail thay vì nói đã xong.
+```
+
+### Bước 2. Agent tự chạy lệnh kiểm tra
+Ví dụ:
+```bash
+./mvnw test
+./mvnw verify
+npm test
+npm run build
+npm run lint
+dotnet test
+dotnet build
+```
+
+### Bước 3. Workflow không cho bỏ qua verify
+Ví dụ flow:
+```text
+plan -> code -> test/build/lint -> review -> done
+```
+
+### Bước 4. Chặn cứng ở CI
+Ví dụ GitHub Actions:
+```yaml
+name: ci
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Run tests
+        run: ./mvnw test
+```
+
+Sau đó bật branch protection cho `main` và yêu cầu check `test` phải pass trước khi merge.
+
+Khi đó:
+- agent có thể tự chạy kiểm tra trước
+- CI chạy lại trên môi trường chuẩn
+- nếu CI fail thì không merge được
