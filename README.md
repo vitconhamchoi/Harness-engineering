@@ -15,8 +15,7 @@ Harness
    │  └─ ví dụ: AGENTS.md, docs/
    │
    ├─ Đặc tả thay đổi
-   │  ├─ ví dụ công cụ: OpenSpec
-   │  └─ ví dụ cách tổ chức: Spec-Kit
+   │  └─ ví dụ công cụ: OpenSpec
    │
    ├─ Quy trình làm việc của agent
    │  └─ ví dụ công cụ / framework: Superpowers
@@ -71,7 +70,6 @@ Ví dụ:
 
 Trong tầng này:
 - **OpenSpec** là một công cụ cụ thể để quản lý đặc tả
-- **Spec-Kit** là một cách tổ chức công việc theo hướng đặc tả trước
 
 Trong repo này:
 - `examples/project-root/openspec/`
