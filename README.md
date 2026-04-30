@@ -139,23 +139,11 @@ Ví dụ:
 - user: "debug lỗi 500 ở API tạo đơn hàng"
 - agent nên tự chuyển sang workflow gỡ lỗi có hệ thống thay vì vá bừa
 
-Slash command như `/brainstorm`, `/write-plan`, `/execute-plan` chỉ nên dùng khi:
-- muốn ép agent vào đúng mode ngay lập tức
-- hoặc plugin trên nền tảng đó chưa tự kích hoạt workflow đủ tốt
+Slash command chỉ là cách gọi tay khi cần ép workflow.
 
-Điểm cần lưu ý:
-- mức tự động hóa của Superpowers phụ thuộc vào nền tảng tích hợp
-- tích hợp sâu thì agent tự vào đúng workflow nhiều hơn
-- tích hợp nông thì người dùng vẫn phải điều phối nhiều hơn
-
-Nếu tập trung vào VS Code và Antigravity thì có thể hiểu như sau:
-
-- **VS Code**: OpenSpec dùng trực tiếp qua CLI. Superpowers có thể dùng trong VS Code theo hướng tích hợp với Copilot ở mức workspace, nhưng đó không phải đường tích hợp chính thức mạnh nhất của dự án Superpowers.
-- **Antigravity**: OpenSpec dùng trực tiếp qua CLI. Hiện chưa thấy tài liệu chính thức rõ ràng cho Superpowers ở mức plugin tích hợp sâu dành riêng cho Antigravity.
-
-Điều này có nghĩa là:
-- với **VS Code**, có thể dùng cả OpenSpec và Superpowers, nhưng mức tích hợp của Superpowers phụ thuộc vào giải pháp tích hợp đang dùng
-- với **Antigravity**, OpenSpec là phần có cơ sở rõ ràng hơn theo tài liệu hiện có
+Với hai môi trường này:
+- **VS Code**: dùng được OpenSpec và có thể dùng Superpowers
+- **Antigravity**: dùng được OpenSpec; chưa thấy tài liệu chính thức rõ cho Superpowers
 
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
