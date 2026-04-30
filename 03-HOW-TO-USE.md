@@ -1,13 +1,12 @@
-# How to add Harness Engineering to an existing project
+# How to use this repo
 
-## Làm tối thiểu 4 việc
+## Nếu chỉ muốn hiểu khái niệm
+Đọc:
+1. `README.md`
+2. `01-FOUNDATIONS.md`
 
-1. thêm spec layer
-2. thêm AGENTS.md
-3. thêm workflow docs
-4. thêm verification discipline
-
-## Cụ thể
+## Nếu muốn thêm harness vào một project có sẵn
+Làm 4 việc:
 
 ### Bước 1. Thêm spec layer
 Nếu dùng OpenSpec:
@@ -35,3 +34,13 @@ Copy hoặc adapt từ:
 - test command
 - lint command
 - khi nào được coi là done
+
+## Nếu muốn lấy pattern local thay cho Superpowers
+Dùng:
+- `project-kit/local-superpower-patterns/`
+
+## Nếu muốn lấy template nhét vào project thật
+Chỉ nhìn vào:
+- `project-kit/openspec/`
+- `project-kit/local-superpower-patterns/`
+- `project-kit/templates/`
