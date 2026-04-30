@@ -2,6 +2,21 @@
 
 Bộ tài liệu nền để thiết kế, vận hành, và mở rộng một AI agent harness theo hướng thực dụng.
 
+## Harness là gì, hiểu ngắn gọn
+
+Harness không phải framework code để import vào app.
+Nó là **bộ luật vận hành cho AI khi làm việc với một dự án**.
+
+Nó giúp trả lời các câu:
+- agent được làm gì
+- khi nào phải đọc code trước khi kết luận
+- khi nào cần web search
+- khi nào được sửa file
+- output nên theo format nào
+- debug / review / research nên đi theo quy trình gì
+
+Nói dễ hiểu: harness giống **SOP + playbook + prompt pack** cho AI trong dự án.
+
 ## Mục tiêu
 
 Repo này dùng để:
@@ -53,8 +68,31 @@ Repo này dùng để:
 1. đọc `docs/AGENTS.md`
 2. chọn template phù hợp trong `docs/`
 3. chọn prompt phù hợp trong `docs/prompt-examples.md`
-4. chạy `scripts/validate.sh`
-5. bổ sung use case mới khi cần
+4. nếu có project thật, tạo một pack riêng trong `examples/<project-name>/`
+5. chạy `scripts/validate.sh`
+6. bổ sung use case mới khi cần
+
+## Harness áp được vào những mảng nào
+
+Harness không chỉ để code. Nó áp được ít nhất vào:
+
+- **Code execution**: thêm feature, sửa bug, refactor
+- **Debugging**: điều tra lỗi theo đúng tầng, không vá symptom
+- **Code review / architecture review**: check invariants, risk, coupling
+- **Research**: tra cứu có source discipline, không trả lời mò
+- **Security / repo hygiene**: review secret exposure, scripts, config risk
+- **Docs / communication**: viết status, progress, design note, technical explanation
+
+## Ví dụ áp vào dự án thật
+
+Repo này hiện có ví dụ cho:
+- `examples/todolist-backend/`
+
+Với project này, harness được dùng để:
+- chuẩn hóa cách debug sync bug
+- review logic offline-first / event-driven
+- giao việc cho AI mà không bị sửa bừa ở sai tầng
+- giữ cho agent luôn trace qua state, snapshot, và realtime notification trước khi kết luận
 
 ## Bộ này phù hợp với ai
 

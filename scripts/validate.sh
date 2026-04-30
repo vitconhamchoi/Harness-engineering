@@ -42,6 +42,18 @@ ok "docs/security-review-template.md present"
 [ -f "$ROOT/docs/research-template.md" ] || fail "Missing docs/research-template.md"
 ok "docs/research-template.md present"
 
+[ -f "$ROOT/examples/todolist-backend/AGENTS.md" ] || fail "Missing examples/todolist-backend/AGENTS.md"
+ok "todolist-backend AGENTS example present"
+
+[ -f "$ROOT/examples/todolist-backend/docs/debug-workflow.md" ] || fail "Missing examples/todolist-backend/docs/debug-workflow.md"
+ok "todolist-backend debug workflow present"
+
+[ -f "$ROOT/examples/todolist-backend/docs/review-checklist.md" ] || fail "Missing examples/todolist-backend/docs/review-checklist.md"
+ok "todolist-backend review checklist present"
+
+[ -f "$ROOT/examples/todolist-backend/docs/prompt-examples.md" ] || fail "Missing examples/todolist-backend/docs/prompt-examples.md"
+ok "todolist-backend prompt examples present"
+
 grep -q "Harness Engineering" "$ROOT/README.md" || fail "README.md missing expected title"
 ok "README title check passed"
 
@@ -59,5 +71,17 @@ ok "Security template check passed"
 
 grep -q "Research Rules" "$ROOT/docs/research-template.md" || fail "research-template.md missing expected section"
 ok "Research template check passed"
+
+grep -q "offline-first" "$ROOT/examples/todolist-backend/AGENTS.md" || fail "todolist-backend AGENTS missing expected wording"
+ok "todolist-backend AGENTS check passed"
+
+grep -q "Debug Workflow" "$ROOT/examples/todolist-backend/docs/debug-workflow.md" || fail "todolist-backend debug workflow missing title"
+ok "todolist-backend debug workflow check passed"
+
+grep -q "Review Checklist" "$ROOT/examples/todolist-backend/docs/review-checklist.md" || fail "todolist-backend review checklist missing title"
+ok "todolist-backend review checklist check passed"
+
+grep -q "Prompt Examples" "$ROOT/examples/todolist-backend/docs/prompt-examples.md" || fail "todolist-backend prompt examples missing title"
+ok "todolist-backend prompt examples check passed"
 
 echo "Validation passed."
