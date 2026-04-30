@@ -55,7 +55,7 @@ Công cụ tiêu biểu:
 - OpenSpec
 
 Trong repo này:
-- `examples/openspec/`
+- `examples/project-root/openspec/`
 
 ### 3.3. Quy trình làm việc của agent
 Cải thiện cách agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát.
@@ -86,5 +86,5 @@ Nói ngắn:
 ## 5. Cấu trúc repo hiện tại
 
 - `README.md`: giải thích khái niệm chính
-- `examples/openspec/`: ví dụ cho phần đặc tả thay đổi
+- `examples/project-root/openspec/`: ví dụ phần đặc tả thay đổi trong project thật
 - `examples/project-root/`: ví dụ cho phần hướng dẫn riêng của dự án
