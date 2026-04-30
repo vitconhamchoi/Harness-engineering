@@ -62,7 +62,6 @@ Mục đích: cải thiện cách agent phân tích, lập kế hoạch, kiểm 
 
 Trong repo này:
 - `02-INSTALLATION.md` phần cài Superpowers
-- `project-kit/local-superpower-patterns/` (tài liệu tham khảo, không phải plugin chính thức)
 
 Công cụ tiêu biểu:
 - Superpowers
@@ -91,5 +90,4 @@ Chúng chỉ là hai thành phần bên trong harness.
 
 ## Phần có thể dùng lại trong project
 - `project-kit/openspec/`
-- `project-kit/local-superpower-patterns/`
 - `project-kit/templates/`

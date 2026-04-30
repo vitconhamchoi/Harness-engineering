@@ -79,8 +79,3 @@ Trong chính project của mày, phải xác định rõ ít nhất các lệnh 
 
 Nếu không có phần này thì harness chưa hoàn chỉnh.
 
-## 6. `project-kit/local-superpower-patterns/` dùng để làm gì?
-Thư mục này chỉ là tài liệu tham khảo thêm.
-
-Nó không phải plugin Superpowers chính thức.
-Nó không đại diện đầy đủ cho Superpowers.

@@ -60,5 +60,3 @@ gemini extensions install https://github.com/obra/superpowers
 ## Điều cần hiểu rõ
 - OpenSpec là công cụ riêng cho phần đặc tả.
 - Superpowers là plugin / framework riêng cho quy trình làm việc của agent.
-- `project-kit/local-superpower-patterns/` trong repo này không phải Superpowers chính thức.
-- Thư mục đó chỉ là tài liệu tham khảo.
