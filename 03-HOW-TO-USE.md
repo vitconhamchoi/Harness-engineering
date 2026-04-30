@@ -13,35 +13,35 @@ Copy các file sau vào project thật.
 
 ### File hướng dẫn agent
 Nguồn:
-- `project-kit/templates/AGENTS.md`
+- `examples/templates/AGENTS.md`
 
 Đích:
 - `/path/to/my-project/AGENTS.md`
 
 ### File ví dụ prompt
 Nguồn:
-- `project-kit/templates/prompt-examples.md`
+- `examples/templates/prompt-examples.md`
 
 Đích:
 - `/path/to/my-project/docs/prompt-examples.md`
 
 ### File mẫu quy trình
 Nguồn:
-- `project-kit/templates/workflow-templates.md`
+- `examples/templates/workflow-templates.md`
 
 Đích:
 - `/path/to/my-project/docs/workflow-templates.md`
 
 ### File mẫu rà soát bảo mật
 Nguồn:
-- `project-kit/templates/security-review-template.md`
+- `examples/templates/security-review-template.md`
 
 Đích:
 - `/path/to/my-project/docs/security-review-template.md`
 
 ### File mẫu nghiên cứu
 Nguồn:
-- `project-kit/templates/research-template.md`
+- `examples/templates/research-template.md`
 
 Đích:
 - `/path/to/my-project/docs/research-template.md`

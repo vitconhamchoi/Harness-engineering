@@ -92,11 +92,11 @@ Làm bốn việc:
 ### 6.1. Thêm hướng dẫn riêng của dự án
 Copy từ repo này sang project thật:
 
-- `project-kit/templates/AGENTS.md` -> `/path/to/my-project/AGENTS.md`
-- `project-kit/templates/prompt-examples.md` -> `/path/to/my-project/docs/prompt-examples.md`
-- `project-kit/templates/workflow-templates.md` -> `/path/to/my-project/docs/workflow-templates.md`
-- `project-kit/templates/security-review-template.md` -> `/path/to/my-project/docs/security-review-template.md`
-- `project-kit/templates/research-template.md` -> `/path/to/my-project/docs/research-template.md`
+- `examples/templates/AGENTS.md` -> `/path/to/my-project/AGENTS.md`
+- `examples/templates/prompt-examples.md` -> `/path/to/my-project/docs/prompt-examples.md`
+- `examples/templates/workflow-templates.md` -> `/path/to/my-project/docs/workflow-templates.md`
+- `examples/templates/security-review-template.md` -> `/path/to/my-project/docs/security-review-template.md`
+- `examples/templates/research-template.md` -> `/path/to/my-project/docs/research-template.md`
 
 ### 6.2. Thêm phần đặc tả thay đổi bằng OpenSpec
 
@@ -156,5 +156,5 @@ Nếu thiếu phần này thì harness chưa hoàn chỉnh.
 
 ## 7. Phần nào trong repo này có thể dùng lại?
 
-- `project-kit/openspec/`
-- `project-kit/templates/`
+- `examples/openspec/`
+- `examples/templates/`
