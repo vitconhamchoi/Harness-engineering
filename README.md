@@ -99,6 +99,10 @@ Ví dụ workflow:
 
 Một cách triển khai phần này là **Superpowers**.
 
+Điểm cần hiểu rõ:
+- mục tiêu tốt nhất là agent **tự** vào đúng workflow theo ngữ cảnh
+- slash command chỉ nên là **cách gọi tay khi cần ép mode**, không nên là cách dùng chính hằng ngày
+
 Ví dụ cài Superpowers:
 
 ### Claude Code
@@ -118,15 +122,21 @@ hoặc:
 /add-plugin superpowers
 ```
 
-Ví dụ lệnh / workflow thường gặp:
-- `/brainstorm`
-- `/write-plan`
-- `/execute-plan`
+Cách dùng thực tế nên là:
+- user nói mục tiêu công việc bình thường
+- agent tự nhận ra cần brainstorm, viết kế hoạch, thực thi hay review
+- agent tự đi qua các bước phù hợp
 
-Ý nghĩa thực tế:
-- `/brainstorm`: chốt yêu cầu và hướng làm trước khi code
-- `/write-plan`: bẻ công việc thành bước nhỏ
-- `/execute-plan`: thực hiện kế hoạch theo từng bước có checkpoint
+Ví dụ:
+- user: "thêm chức năng đăng nhập bằng Google"
+- agent nên tự chuyển sang bước làm rõ yêu cầu và thiết kế trước khi code
+
+- user: "debug lỗi 500 ở API tạo đơn hàng"
+- agent nên tự chuyển sang workflow gỡ lỗi có hệ thống thay vì vá bừa
+
+Slash command như `/brainstorm`, `/write-plan`, `/execute-plan` chỉ nên dùng khi:
+- muốn ép agent vào đúng mode ngay lập tức
+- hoặc plugin trên nền tảng đó chưa tự kích hoạt workflow đủ tốt
 
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
