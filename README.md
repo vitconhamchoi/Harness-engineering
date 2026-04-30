@@ -1,8 +1,33 @@
 # Harness Engineering
 
-Repository này giải thích cách bổ sung lớp điều phối xung quanh AI agent để agent làm việc đúng quy trình hơn trong một dự án phần mềm.
+## Diagram
 
-## 1. Ba khái niệm phải tách rõ
+```text
+Người dùng
+   │
+   ▼
+Harness
+   ├─ Hướng dẫn riêng của dự án
+   │  └─ ví dụ: AGENTS.md, docs/
+   │
+   ├─ Đặc tả thay đổi
+   │  ├─ ví dụ công cụ: OpenSpec
+   │  └─ ví dụ cách tổ chức: Spec-Kit
+   │
+   ├─ Quy trình làm việc của agent
+   │  └─ ví dụ công cụ / framework: Superpowers
+   │
+   └─ Kiểm chứng
+   │  └─ ví dụ: test, build, lint, review
+   │
+   ▼
+Agent
+   │
+   ▼
+Mã nguồn và công cụ
+```
+
+## Khái niệm chính
 
 - **Model**: mô hình ngôn ngữ, tức lõi sinh câu trả lời và suy luận.
 - **Agent**: hệ thống dùng model làm bộ não, đồng thời có thêm khả năng đọc file, gọi công cụ, sửa mã, chạy lệnh và làm việc nhiều bước.
@@ -15,28 +40,9 @@ Nói ngắn gọn:
 
 **Harness không phải agent. Agent cũng không phải model.**
 
-## 2. Diagram
+## Bốn phần của harness
 
-```text
-Người dùng
-   │
-   ▼
-Harness
-   ├─ Hướng dẫn riêng của dự án
-   ├─ Đặc tả thay đổi
-   ├─ Quy trình làm việc của agent
-   └─ Kiểm chứng
-   │
-   ▼
-Agent
-   │
-   ▼
-Mã nguồn và công cụ
-```
-
-## 3. Bốn phần của harness
-
-### 3.1. Hướng dẫn riêng của dự án
+### 1. Hướng dẫn riêng của dự án
 Cho agent biết repo cụ thể này phải được xử lý như thế nào.
 
 Ví dụ:
@@ -46,24 +52,31 @@ Ví dụ:
 - tài liệu review
 
 Trong repo này:
-- `examples/project-root/`
+- `examples/project-root/AGENTS.md`
+- `examples/project-root/docs/`
 
-### 3.2. Đặc tả thay đổi
+### 2. Đặc tả thay đổi
 Giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
 
-Công cụ tiêu biểu:
-- OpenSpec
+Ví dụ:
+- proposal
+- design
+- tasks
+
+Trong tầng này:
+- **OpenSpec** là một công cụ cụ thể để quản lý đặc tả
+- **Spec-Kit** là một cách tổ chức công việc theo hướng đặc tả trước
 
 Trong repo này:
 - `examples/project-root/openspec/`
 
-### 3.3. Quy trình làm việc của agent
+### 3. Quy trình làm việc của agent
 Cải thiện cách agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát.
 
-Công cụ tiêu biểu:
-- Superpowers
+Trong tầng này:
+- **Superpowers** là plugin / framework giúp agent làm việc theo workflow mạnh hơn
 
-### 3.4. Kiểm chứng
+### 4. Kiểm chứng
 Buộc agent chứng minh là thay đổi đã đúng trước khi kết thúc.
 
 Ví dụ:
@@ -72,19 +85,7 @@ Ví dụ:
 - lint
 - review
 
-## 4. OpenSpec, Superpowers, Spec-Kit nằm ở đâu?
-
-- **OpenSpec**: công cụ cho phần **đặc tả thay đổi**.
-- **Superpowers**: plugin / framework cho phần **quy trình làm việc của agent**.
-- **Spec-Kit**: cách tổ chức quy trình theo hướng đặc tả trước.
-
-Nói ngắn:
-- cần công cụ quản lý spec -> OpenSpec
-- cần workflow cho agent -> Superpowers
-- cần cách tổ chức theo spec-first -> Spec-Kit
-
-## 5. Cấu trúc repo hiện tại
+## Cấu trúc repo hiện tại
 
 - `README.md`: giải thích khái niệm chính
-- `examples/project-root/openspec/`: ví dụ phần đặc tả thay đổi trong project thật
-- `examples/project-root/`: ví dụ cho phần hướng dẫn riêng của dự án
+- `examples/project-root/`: ví dụ cấu trúc harness trong một project thật
