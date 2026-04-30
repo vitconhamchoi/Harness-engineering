@@ -31,7 +31,7 @@ Ví dụ file:
 - `docs/research-template.md`
 
 Trong repo này, ví dụ nằm ở:
-- `examples/templates/`
+- `examples/project-docs/`
 
 ### Phần 2. Đặc tả thay đổi
 Đây là phần giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
@@ -102,13 +102,21 @@ Làm bốn việc:
 4. thêm kiểm chứng
 
 ### 5.1. Thêm hướng dẫn riêng của dự án
-Copy từ repo này sang project thật:
+Copy cả thư mục mẫu từ repo này sang project thật:
 
-- `examples/templates/AGENTS.md` -> `/path/to/my-project/AGENTS.md`
-- `examples/templates/prompt-examples.md` -> `/path/to/my-project/docs/prompt-examples.md`
-- `examples/templates/workflow-templates.md` -> `/path/to/my-project/docs/workflow-templates.md`
-- `examples/templates/security-review-template.md` -> `/path/to/my-project/docs/security-review-template.md`
-- `examples/templates/research-template.md` -> `/path/to/my-project/docs/research-template.md`
+```bash
+cp -R examples/project-docs /path/to/my-project/docs
+cp examples/project-docs/AGENTS.md /path/to/my-project/AGENTS.md
+```
+
+Sau khi copy, project của mày sẽ có:
+- `/path/to/my-project/AGENTS.md`
+- `/path/to/my-project/docs/project-docs/prompt-examples.md`
+- `/path/to/my-project/docs/project-docs/workflow-templates.md`
+- `/path/to/my-project/docs/project-docs/security-review-template.md`
+- `/path/to/my-project/docs/project-docs/research-template.md`
+
+Nếu muốn gọn hơn, mày có thể đổi tên thư mục `project-docs` sau khi copy.
 
 ### 5.2. Thêm phần đặc tả thay đổi bằng OpenSpec
 
@@ -169,4 +177,4 @@ Nếu thiếu phần này thì harness chưa hoàn chỉnh.
 ## 6. Phần nào trong repo này có thể dùng lại?
 
 - `examples/openspec/`
-- `examples/templates/`
+- `examples/project-docs/`
