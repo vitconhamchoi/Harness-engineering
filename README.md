@@ -91,7 +91,3 @@ Ví dụ:
 - lint
 - review
 
-## Cấu trúc repo hiện tại
-
-- `README.md`: giải thích khái niệm chính
-- `examples/project-root/`: ví dụ cấu trúc harness trong một project thật
