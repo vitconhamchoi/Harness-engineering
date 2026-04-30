@@ -59,9 +59,11 @@ Trong repo này:
 Giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
 
 Ví dụ:
-- proposal
-- design
-- tasks
+- openspec/changes/<ten-thay-doi>/proposal.md
+- openspec/changes/<ten-thay-doi>/design.md
+- openspec/changes/<ten-thay-doi>/tasks.md
+- openspec/changes/<ten-thay-doi>/specs/requirements.md
+- openspec/changes/archive/
 
 Trong tầng này:
 - **OpenSpec** là một công cụ cụ thể để quản lý đặc tả
