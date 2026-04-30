@@ -76,11 +76,25 @@ openspec/
 - `tasks.md`: các bước triển khai
 - `requirements.md`: yêu cầu chi tiết
 
-Cài và dùng OpenSpec:
+OpenSpec có hai nhóm lệnh khác nhau:
+
+### Lệnh terminal
+Dùng để cài và cập nhật OpenSpec trong project.
+
 ```bash
 npm install -g @fission-ai/openspec@latest
 cd /path/to/my-project
 openspec init
+openspec update
+```
+
+### Lệnh chat của agent
+Dùng để vận hành workflow hằng ngày sau khi OpenSpec đã được gắn vào project.
+
+```text
+/opsx:propose <ten-thay-doi>
+/opsx:apply
+/opsx:archive
 ```
 
 Các bước thực hiện một yêu cầu với OpenSpec:
@@ -127,11 +141,6 @@ Khi proposal, design và tasks đã ổn, yêu cầu agent thực hiện:
 Khi thay đổi đã xong và đã kiểm chứng, lưu vào archive:
 ```text
 /opsx:archive
-```
-
-### Bước 6. Cập nhật lại instruction của OpenSpec khi cần
-```bash
-openspec update
 ```
 
 Ví dụ trong repo này:
