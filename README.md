@@ -1,8 +1,8 @@
 # Harness Engineering
 
-Repository này giải thích **Harness Engineering** là gì và nó được ghép từ những phần nào trong một dự án dùng AI coding agent.
+Harness Engineering là cách tổ chức thêm các lớp hỗ trợ xung quanh AI agent để việc phân tích, lập kế hoạch, triển khai và kiểm tra trong dự án phần mềm diễn ra ổn định hơn.
 
-Hiểu ngắn gọn, Harness Engineering là cách bổ sung lớp điều phối xung quanh agent để agent làm việc đúng quy trình hơn, nhớ đúng ngữ cảnh hơn và tự kiểm tra kỹ hơn trước khi kết thúc.
+Mục tiêu của nó là giảm việc agent làm theo cảm tính của từng phiên chat, đồng thời giữ yêu cầu, quy trình và tiêu chí kiểm chứng ở trạng thái rõ ràng hơn.
 
 ## Diagram
 
@@ -36,11 +36,6 @@ Mã nguồn và công cụ
 - **Agent**: hệ thống dùng model làm bộ não, đồng thời có thêm khả năng đọc file, gọi công cụ, sửa mã, chạy lệnh và làm việc nhiều bước.
 - **Harness**: lớp bao quanh agent để nạp ngữ cảnh, áp quy tắc, gắn quy trình và buộc kiểm chứng.
 
-Nói ngắn gọn:
-- model là lõi suy luận
-- agent là hệ thống làm việc dùng model
-- harness là lớp điều phối cách agent vận hành
-
 **Harness không phải agent. Agent cũng không phải model.**
 
 ## Bốn phần của harness
@@ -59,14 +54,21 @@ Trong repo này:
 - `examples/project-root/docs/`
 
 ### 2. Đặc tả thay đổi
-Giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
+Giữ yêu cầu, thiết kế, đầu việc và lịch sử thay đổi ra ngoài phần chat.
 
-Ví dụ:
-- openspec/changes/<ten-thay-doi>/proposal.md
-- openspec/changes/<ten-thay-doi>/design.md
-- openspec/changes/<ten-thay-doi>/tasks.md
-- openspec/changes/<ten-thay-doi>/specs/requirements.md
-- openspec/changes/archive/
+Đây là nơi trả lời các câu hỏi như:
+- thay đổi này nhằm giải quyết vấn đề gì?
+- phạm vi thay đổi là gì?
+- hướng thiết kế kỹ thuật là gì?
+- cần làm những đầu việc nào?
+- yêu cầu chi tiết và tình huống cần đáp ứng là gì?
+
+Ví dụ cấu trúc thường gặp:
+- `openspec/changes/<ten-thay-doi>/proposal.md`: mô tả mục tiêu và phạm vi thay đổi
+- `openspec/changes/<ten-thay-doi>/design.md`: hướng thiết kế kỹ thuật
+- `openspec/changes/<ten-thay-doi>/tasks.md`: danh sách đầu việc cần thực hiện
+- `openspec/changes/<ten-thay-doi>/specs/requirements.md`: yêu cầu chi tiết
+- `openspec/changes/archive/`: nơi lưu các thay đổi đã hoàn tất
 
 Trong tầng này:
 - **OpenSpec** là một công cụ cụ thể để quản lý đặc tả
