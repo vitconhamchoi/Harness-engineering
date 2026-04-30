@@ -131,36 +131,73 @@ Ví dụ lệnh / workflow thường gặp:
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
 
-Cơ chế thực tế gồm 4 bước:
+Làm phần này theo 4 bước cụ thể sau.
 
-### Bước 1. Đặt rule trong project
-Ví dụ trong `AGENTS.md`:
+### Bước 1. Ghi rule chặn trong project
+Việc phải làm:
+1. mở `AGENTS.md`
+2. thêm rule bắt agent phải chạy kiểm tra trước khi kết thúc
+
+Ví dụ nội dung:
 ```md
-- Không được kết luận hoàn tất nếu chưa chạy test hoặc build.
-- Báo cáo cuối phải ghi rõ các lệnh kiểm tra đã chạy.
-- Nếu lệnh kiểm tra thất bại, phải báo fail thay vì nói đã xong.
+## Verification Rules
+- Không được kết luận hoàn tất nếu chưa chạy lệnh kiểm tra bắt buộc.
+- Báo cáo cuối phải ghi rõ lệnh nào đã chạy và kết quả pass/fail.
+- Nếu test, build hoặc lint fail thì phải báo fail, không được nói đã xong.
 ```
 
-### Bước 2. Agent tự chạy lệnh kiểm tra
-Ví dụ:
-```bash
-./mvnw test
-./mvnw verify
-npm test
-npm run build
-npm run lint
-dotnet test
-dotnet build
+Kết quả mong muốn:
+- agent có luật rõ để bám vào khi làm việc
+
+### Bước 2. Chốt bộ lệnh kiểm tra của project
+Việc phải làm:
+1. xác định project dùng lệnh nào để test, build, lint
+2. ghi chúng vào `AGENTS.md` hoặc `docs/workflow-templates.md`
+
+Ví dụ Spring Boot dùng Maven:
+```md
+## Verification Commands
+- Test: ./mvnw test
+- Build: ./mvnw verify
 ```
 
-### Bước 3. Workflow không cho bỏ qua verify
-Ví dụ flow:
+Ví dụ Node.js:
+```md
+## Verification Commands
+- Test: npm test
+- Build: npm run build
+- Lint: npm run lint
+```
+
+Kết quả mong muốn:
+- agent biết chính xác phải chạy lệnh nào, không phải đoán
+
+### Bước 3. Ép verify vào quy trình làm việc
+Việc phải làm:
+1. ghi rõ trong workflow rằng sau khi sửa mã phải chạy verify
+2. không cho bước “done” xuất hiện trước bước verify
+
+Ví dụ ghi trong `docs/workflow-templates.md`:
 ```text
-plan -> code -> test/build/lint -> review -> done
+1. đọc yêu cầu
+2. viết kế hoạch
+3. sửa mã
+4. chạy test/build/lint
+5. nếu fail thì sửa tiếp
+6. nếu pass thì mới được review và kết thúc
 ```
 
-### Bước 4. Chặn cứng ở CI
-Ví dụ GitHub Actions:
+Kết quả mong muốn:
+- verify trở thành một bước bắt buộc trong flow, không phải bước tùy hứng
+
+### Bước 4. Tạo chặn kỹ thuật ở CI
+Việc phải làm:
+1. tạo file workflow CI, ví dụ `.github/workflows/ci.yml`
+2. cấu hình CI chạy đúng lệnh kiểm tra của project
+3. bật branch protection
+4. yêu cầu check CI phải pass trước khi merge
+
+Ví dụ GitHub Actions cho Spring Boot:
 ```yaml
 name: ci
 on: [pull_request]
@@ -175,11 +212,15 @@ jobs:
           java-version: '21'
       - name: Run tests
         run: ./mvnw test
+      - name: Verify build
+        run: ./mvnw verify
 ```
 
-Sau đó bật branch protection cho `main` và yêu cầu check `test` phải pass trước khi merge.
+Việc phải làm tiếp trên GitHub:
+1. vào `Settings -> Branches`
+2. tạo branch protection rule cho `main`
+3. bật `Require status checks to pass before merging`
+4. chọn job `test`
 
-Khi đó:
-- agent có thể tự chạy kiểm tra trước
-- CI chạy lại trên môi trường chuẩn
-- nếu CI fail thì không merge được
+Kết quả mong muốn:
+- agent có thể nói đã xong, nhưng nếu CI đỏ thì vẫn không merge được
