@@ -36,6 +36,8 @@ Mã nguồn và công cụ
 
 **Harness không phải agent. Agent không phải model.**
 
+OpenSpec và Superpowers cũng không phải toàn bộ harness. Chúng chỉ là hai thành phần bên trong harness.
+
 ## 1. Hướng dẫn riêng của dự án
 Dùng để nói cho agent biết repo này phải được xử lý như thế nào.
 
@@ -44,6 +46,12 @@ Ví dụ file:
 - `docs/prompt-examples.md`
 - `docs/workflow-templates.md`
 - `docs/security-review-template.md`
+
+Ví dụ nội dung thường có:
+- module nào nhạy cảm, không được sửa bừa
+- coding convention nào bắt buộc
+- lệnh build, test, lint của project
+- format báo cáo cuối mà agent phải trả về
 
 Ví dụ trong repo này:
 - `examples/project-root/AGENTS.md`
@@ -137,6 +145,11 @@ Ví dụ:
 Slash command như `/brainstorm`, `/write-plan`, `/execute-plan` chỉ nên dùng khi:
 - muốn ép agent vào đúng mode ngay lập tức
 - hoặc plugin trên nền tảng đó chưa tự kích hoạt workflow đủ tốt
+
+Điểm cần lưu ý:
+- mức tự động hóa của Superpowers phụ thuộc vào nền tảng tích hợp
+- tích hợp sâu thì agent tự vào đúng workflow nhiều hơn
+- tích hợp nông thì người dùng vẫn phải điều phối nhiều hơn
 
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
