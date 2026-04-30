@@ -2,47 +2,88 @@
 
 Repository này giải thích cách tổ chức AI coding agent làm việc bài bản trong một dự án phần mềm.
 
-## Sơ đồ khái niệm
+## Mô hình thành phần
+
+```text
+                 Người dùng
+                     │
+                     │ giao mục tiêu / yêu cầu
+                     ▼
+              ┌───────────────┐
+              │     Agent     │
+              │    (Model)    │
+              └───────┬───────┘
+                      │
+                      │ được điều khiển bởi harness
+                      ▼
+    ┌───────────────────────────────────────────────┐
+    │                 HARNESS                       │
+    │                                               │
+    │  ┌─────────────────────────────────────────┐  │
+    │  │ 1. Lớp hướng dẫn riêng của dự án       │  │
+    │  │ - AGENTS.md                            │  │
+    │  │ - prompt examples                      │  │
+    │  │ - workflow docs                        │  │
+    │  │ - review docs                          │  │
+    │  └───────────────────┬────────────────────┘  │
+    │                      │ tác động cách agent   │
+    │                      │ hiểu repo và làm việc │
+    │                      ▼                       │
+    │  ┌─────────────────────────────────────────┐  │
+    │  │ 2. Lớp quy trình làm việc của agent    │  │
+    │  │ - Superpowers                          │  │
+    │  │ - planning / debugging / review / TDD  │  │
+    │  └───────────────────┬────────────────────┘  │
+    │                      │ điều khiển cách       │
+    │                      │ agent thực hiện việc  │
+    │                      ▼                       │
+    │  ┌─────────────────────────────────────────┐  │
+    │  │ 3. Lớp đặc tả                           │  │
+    │  │ - OpenSpec                              │  │
+    │  │ - proposal / design / tasks            │  │
+    │  └───────────────────┬────────────────────┘  │
+    │                      │ cung cấp nguồn sự thật│
+    │                      │ cho thay đổi          │
+    │                      ▼                       │
+    │  ┌─────────────────────────────────────────┐  │
+    │  │ 4. Lớp kiểm chứng                       │  │
+    │  │ - test                                  │  │
+    │  │ - build                                 │  │
+    │  │ - lint                                  │  │
+    │  │ - review gate                           │  │
+    │  └─────────────────────────────────────────┘  │
+    │                                               │
+    └───────────────────────────────────────────────┘
+                      │
+                      │ tạo thay đổi trong codebase
+                      ▼
+                 Mã nguồn dự án
+```
+
+## Hiểu ngắn gọn
+
+- **Agent** là model trực tiếp làm việc.
+- **Harness** là phần bao quanh agent để ép nó làm việc có tổ chức hơn.
+- **Lớp hướng dẫn riêng của dự án** nói cho agent biết repo này phải làm thế nào.
+- **Lớp quy trình làm việc của agent** quyết định cách agent suy nghĩ, lập kế hoạch, debug, test và review.
+- **Lớp đặc tả** giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
+- **Lớp kiểm chứng** buộc agent chứng minh là nó đã làm đúng.
+
+## Quan hệ giữa OpenSpec và Superpowers
 
 ```text
 Harness Engineering
 │
-├─ 1. Lớp đặc tả
-│  ├─ Mục đích: lưu yêu cầu, thiết kế, đầu việc và lịch sử thay đổi ra ngoài phần chat
-│  └─ Ví dụ công cụ: OpenSpec
+├─ OpenSpec
+│  └─ thuộc lớp đặc tả
 │
-├─ 2. Lớp quy trình làm việc của agent
-│  ├─ Mục đích: giúp agent suy nghĩ, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát tốt hơn
-│  └─ Ví dụ công cụ / framework: Superpowers
-│
-├─ 3. Lớp hướng dẫn riêng của dự án
-│  ├─ Mục đích: dạy agent cách làm việc đúng với repo cụ thể này
-│  └─ Ví dụ: AGENTS.md, tài liệu prompt, tài liệu workflow, checklist review
-│
-└─ 4. Lớp kiểm chứng
-   ├─ Mục đích: không cho agent tự nhận là xong khi chưa có bằng chứng
-   └─ Ví dụ: test, build, lint, review gate
+└─ Superpowers
+   └─ thuộc lớp quy trình làm việc của agent
 ```
-
-## Giải thích ngắn
-
-- **Harness Engineering** là khung tổ chức tổng thể để AI làm việc có bài bản hơn.
-- **OpenSpec** nằm ở **lớp đặc tả**.
-- **Superpowers** nằm ở **lớp quy trình làm việc của agent**.
-- `AGENTS.md` và các file mẫu nằm ở **lớp hướng dẫn riêng của dự án**.
-- test, build, lint và review nằm ở **lớp kiểm chứng**.
 
 Nói ngắn gọn:
-
-```text
-Agent = Model + Harness
-```
-
-Muốn có harness tốt thì thường phải có đủ:
-- lớp đặc tả
-- lớp quy trình làm việc
-- hướng dẫn riêng của dự án
-- kiểm chứng
+- **OpenSpec** giữ nội dung cần làm.
+- **Superpowers** cải thiện cách agent làm.
 
 ## Nên đọc theo thứ tự
 1. `README.md`
