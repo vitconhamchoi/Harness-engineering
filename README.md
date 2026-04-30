@@ -148,17 +148,15 @@ Slash command như `/brainstorm`, `/write-plan`, `/execute-plan` chỉ nên dùn
 - tích hợp sâu thì agent tự vào đúng workflow nhiều hơn
 - tích hợp nông thì người dùng vẫn phải điều phối nhiều hơn
 
-Theo public docs hiện có, có thể hiểu nhanh như sau:
+Nếu tập trung vào VS Code và Antigravity thì nên hiểu ngắn như sau:
 
-- **Claude Code**: tích hợp sâu hơn. Có plugin marketplace, command rõ, và được mô tả như môi trường gốc của nhiều skill/workflow.
-- **OpenCode**: tích hợp sâu hơn. Có plugin hook, auto context injection, native skill discovery, skill persistence sau compaction.
-- **Cursor Agent**: mức trung bình. Có marketplace install và có mô tả auto trigger, nhưng public docs hiện có ít chi tiết kỹ thuật hơn Claude Code và OpenCode.
-- **Codex**: nghiêng về tích hợp nông hơn. Chủ yếu dựa vào native skill discovery, symlink skills và manual setup; public docs hiện có không cho thấy plugin hook sâu như OpenCode.
+- **VS Code**: OpenSpec dùng được ngay vì là CLI. Superpowers không có support chính chủ kiểu first-class như Claude Code, nhưng có hướng tích hợp cộng đồng cho VS Code Copilot theo từng workspace.
+- **Antigravity**: OpenSpec dùng được ngay vì là CLI. Chưa thấy support chính chủ rõ ràng cho Superpowers ở mức plugin tích hợp sâu.
 
 Nói ngắn:
-- sâu hơn: **Claude Code, OpenCode**
-- trung bình: **Cursor Agent**
-- nông hơn: **Codex**
+- muốn chắc, ít phụ thuộc IDE: **OpenSpec**
+- muốn workflow agent kiểu Superpowers trong VS Code: có thể đi theo hướng integration cộng đồng
+- với Antigravity: hiện nên xem **OpenSpec** là lựa chọn thực tế hơn
 
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
