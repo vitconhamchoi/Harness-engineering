@@ -1,46 +1,78 @@
-# How to use this repo
+# How to use
 
-## Nếu chỉ muốn hiểu khái niệm
-Đọc:
-1. `README.md`
-2. `01-FOUNDATIONS.md`
+## Cách 1. Dùng OpenSpec để thêm spec layer vào project có sẵn
 
-## Nếu muốn thêm harness vào một project có sẵn
-Làm 4 việc:
-
-### Bước 1. Thêm spec layer
-Nếu dùng OpenSpec:
+Trong repo project của mày:
 
 ```bash
 npm install -g @fission-ai/openspec@latest
-cd my-project
+cd /path/to/my-project
 openspec init
 ```
 
-### Bước 2. Thêm AGENTS.md
-Copy hoặc adapt từ:
+Sau đó dùng OpenSpec cho proposal, design, tasks.
+
+## Cách 2. Dùng Superpowers thật
+
+Nếu platform của mày hỗ trợ plugin, cài Superpowers theo `02-INSTALLATION.md`.
+
+Sau khi cài, cách dùng đúng là:
+- agent có thể tự activate skill phù hợp theo context
+- hoặc mày gọi command/skill khi cần
+
+Ví dụ workflow phổ biến:
+- brainstorm trước khi code
+- write plan sau khi chốt design
+- execute plan / subagent-driven-development khi bắt đầu implementation
+- TDD trong lúc code
+- code review trước khi kết thúc
+
+## Ý nghĩa thực tế của Superpowers
+Superpowers không có giá trị nếu chỉ là mấy file md phải tự đọc tay mỗi lần.
+Giá trị của nó là khi nó được cài vào agent platform và trở thành workflow có thể invoke hoặc auto-activate.
+
+## Cách 3. Copy docs/template vào project thật
+
+### Copy từ đâu vào đâu
+
+#### AGENTS.md
+Nguồn:
 - `project-kit/templates/AGENTS.md`
 
-### Bước 3. Thêm workflow docs
-Copy hoặc adapt từ:
+Đích:
+- `/path/to/my-project/AGENTS.md`
+
+#### Prompt examples
+Nguồn:
 - `project-kit/templates/prompt-examples.md`
+
+Đích:
+- `/path/to/my-project/docs/prompt-examples.md`
+
+#### Workflow templates
+Nguồn:
 - `project-kit/templates/workflow-templates.md`
+
+Đích:
+- `/path/to/my-project/docs/workflow-templates.md`
+
+#### Security review template
+Nguồn:
 - `project-kit/templates/security-review-template.md`
+
+Đích:
+- `/path/to/my-project/docs/security-review-template.md`
+
+#### Research template
+Nguồn:
 - `project-kit/templates/research-template.md`
 
-### Bước 4. Thêm verification discipline
-Ít nhất phải chốt:
-- build command
-- test command
-- lint command
-- khi nào được coi là done
+Đích:
+- `/path/to/my-project/docs/research-template.md`
 
-## Nếu muốn lấy pattern local thay cho Superpowers
-Dùng:
-- `project-kit/local-superpower-patterns/`
+## `project-kit/local-superpower-patterns/` dùng để làm gì?
+Chỉ để tham khảo hoặc adapt khi:
+- platform của mày chưa cài được Superpowers thật
+- mày muốn mượn workflow ideas
 
-## Nếu muốn lấy template nhét vào project thật
-Chỉ nhìn vào:
-- `project-kit/openspec/`
-- `project-kit/local-superpower-patterns/`
-- `project-kit/templates/`
+Nó không phải bản thay thế đầy đủ cho official Superpowers plugin/framework.

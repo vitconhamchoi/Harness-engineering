@@ -17,35 +17,47 @@ cd my-project
 openspec init
 ```
 
-### Sau khi init thường sẽ có cấu trúc kiểu
-
-```text
-openspec/
-  changes/
-    <feature-name>/
-      proposal.md
-      design.md
-      tasks.md
-      specs/
-        requirements.md
-  archive/
-```
-
 ## 2. Superpowers
 
-Repo này hiện không cung cấp official Superpowers plugin/package.
+Superpowers là plugin / skills framework thật, nhưng cách cài phụ thuộc platform.
 
-### Trong repo này có gì?
-Có:
-- `project-kit/local-superpower-patterns/`
+### Claude Code official marketplace
+```text
+/plugin install superpowers@claude-plugins-official
+```
 
-Đây chỉ là local patterns để mô phỏng workflow như:
-- brainstorming
-- writing-plans
-- TDD
-- sub-agent execution
-- git worktree discipline
+### Claude Code via Superpowers marketplace
+```text
+/plugin marketplace add obra/superpowers-marketplace
+/plugin install superpowers@superpowers-marketplace
+```
 
-### Điều cần hiểu rõ
-- có mấy file markdown này không có nghĩa là mày đã cài official Superpowers
-- nếu cần implementation/plugin thật, phải verify theo nguồn gốc tool/repo ngoài
+### Cursor Agent
+```text
+/add-plugin superpowers
+```
+
+### Codex app
+Mở sidebar `Plugins` -> tìm `Superpowers` -> bấm `+` để cài.
+
+### OpenCode
+Làm theo install doc chính thức của repo Superpowers cho OpenCode:
+- https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+
+Theo doc hiện tại, plugin được khai báo trong `opencode.json`.
+
+### GitHub Copilot CLI
+```text
+copilot plugin marketplace add obra/superpowers-marketplace
+copilot plugin install superpowers@superpowers-marketplace
+```
+
+### Gemini CLI
+```text
+gemini extensions install https://github.com/obra/superpowers
+```
+
+## Điều quan trọng
+- Superpowers thật là plugin/framework có install path thật.
+- `project-kit/local-superpower-patterns/` trong repo này không phải official Superpowers plugin.
+- Thư mục local đó chỉ là tài liệu/pattern tham khảo.
