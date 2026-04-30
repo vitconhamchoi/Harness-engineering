@@ -1,8 +1,8 @@
-# How to use
+# Cách dùng
 
-## Cách 1. Dùng OpenSpec để thêm spec layer vào project có sẵn
+## Trường hợp 1: Muốn thêm lớp đặc tả vào project đang có sẵn
 
-Trong repo project của mày:
+Trong repo project của mày, chạy:
 
 ```bash
 npm install -g @fission-ai/openspec@latest
@@ -10,60 +10,60 @@ cd /path/to/my-project
 openspec init
 ```
 
-Sau đó dùng OpenSpec cho proposal, design, tasks.
+Sau đó dùng OpenSpec để quản lý:
+- đề xuất thay đổi
+- thiết kế
+- danh sách đầu việc
 
-## Cách 2. Dùng Superpowers thật
+## Trường hợp 2: Muốn thêm Superpowers vào agent
 
-Nếu platform của mày hỗ trợ plugin, cài Superpowers theo `02-INSTALLATION.md`.
+Nếu nền tảng mày dùng có hỗ trợ plugin, cài Superpowers theo `02-INSTALLATION.md`.
 
-Sau khi cài, cách dùng đúng là:
-- agent có thể tự activate skill phù hợp theo context
-- hoặc mày gọi command/skill khi cần
+Sau khi cài xong, Superpowers sẽ giúp agent làm việc tốt hơn ở các bước như:
+- phân tích yêu cầu trước khi code
+- lập kế hoạch
+- thực hiện từng bước có kiểm soát
+- kiểm thử
+- gỡ lỗi
+- rà soát mã nguồn
 
-Ví dụ workflow phổ biến:
-- brainstorm trước khi code
-- write plan sau khi chốt design
-- execute plan / subagent-driven-development khi bắt đầu implementation
-- TDD trong lúc code
-- code review trước khi kết thúc
+Tùy nền tảng, agent có thể:
+- tự kích hoạt kỹ năng phù hợp theo ngữ cảnh
+- hoặc cho phép người dùng gọi lệnh trực tiếp
 
-## Ý nghĩa thực tế của Superpowers
-Superpowers không có giá trị nếu chỉ là mấy file md phải tự đọc tay mỗi lần.
-Giá trị của nó là khi nó được cài vào agent platform và trở thành workflow có thể invoke hoặc auto-activate.
+## Trường hợp 3: Muốn bổ sung tài liệu hướng dẫn cho project thật
 
-## Cách 3. Copy docs/template vào project thật
+### Copy từ đâu sang đâu
 
-### Copy từ đâu vào đâu
-
-#### AGENTS.md
+#### File hướng dẫn agent
 Nguồn:
 - `project-kit/templates/AGENTS.md`
 
 Đích:
 - `/path/to/my-project/AGENTS.md`
 
-#### Prompt examples
+#### File ví dụ prompt
 Nguồn:
 - `project-kit/templates/prompt-examples.md`
 
 Đích:
 - `/path/to/my-project/docs/prompt-examples.md`
 
-#### Workflow templates
+#### File mẫu quy trình
 Nguồn:
 - `project-kit/templates/workflow-templates.md`
 
 Đích:
 - `/path/to/my-project/docs/workflow-templates.md`
 
-#### Security review template
+#### File mẫu rà soát bảo mật
 Nguồn:
 - `project-kit/templates/security-review-template.md`
 
 Đích:
 - `/path/to/my-project/docs/security-review-template.md`
 
-#### Research template
+#### File mẫu nghiên cứu
 Nguồn:
 - `project-kit/templates/research-template.md`
 
@@ -71,8 +71,10 @@ Nguồn:
 - `/path/to/my-project/docs/research-template.md`
 
 ## `project-kit/local-superpower-patterns/` dùng để làm gì?
-Chỉ để tham khảo hoặc adapt khi:
-- platform của mày chưa cài được Superpowers thật
-- mày muốn mượn workflow ideas
+Thư mục này chỉ để tham khảo thêm ý tưởng tổ chức quy trình làm việc.
 
-Nó không phải bản thay thế đầy đủ cho official Superpowers plugin/framework.
+Nó chỉ hữu ích khi:
+- mày chưa cài được Superpowers chính thức
+- hoặc mày muốn tham khảo cách tổ chức workflow để tự điều chỉnh cho project riêng
+
+Nó không phải bản thay thế đầy đủ cho Superpowers chính thức.

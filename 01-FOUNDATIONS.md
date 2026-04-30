@@ -1,7 +1,13 @@
-# Foundations
+# Nền tảng
 
-## Harness Engineering là gì
-Harness Engineering là việc thêm lớp vận hành quanh model để AI làm việc đáng tin hơn trong dự án thật.
+## Harness Engineering là gì?
+Harness Engineering là cách tổ chức AI coding agent làm việc bài bản trong một dự án phần mềm.
+
+Thay vì chỉ đưa prompt rồi để agent tự làm, người làm dự án bổ sung thêm các lớp hỗ trợ để agent:
+- hiểu đúng yêu cầu
+- đi đúng quy trình
+- kiểm tra lại kết quả
+- giảm làm ẩu hoặc làm sai hướng
 
 Công thức ngắn:
 
@@ -9,40 +15,61 @@ Công thức ngắn:
 Agent = Model + Harness
 ```
 
-Harness thường gồm:
-- spec / source-of-truth
-- rules cho agent
-- workflow debug / review / research
-- verification discipline
-- planning / execution discipline
+## Một harness thường gồm những gì?
+Một harness thường có bốn phần chính:
 
-## OpenSpec là gì
-OpenSpec là external tool thật để quản lý spec cho từng thay đổi trong dự án.
+### 1. Lớp đặc tả
+Dùng để quản lý:
+- yêu cầu
+- thiết kế
+- đầu việc
+- lịch sử thay đổi
 
-Vai trò:
-- lưu proposal
-- lưu design
-- lưu tasks
-- giữ requirement ngoài chat history
-- archive thay đổi sau khi hoàn tất
+Mục tiêu là không để toàn bộ ngữ cảnh nằm hết trong phần chat.
 
-## Superpowers là gì
-Superpowers thật là một external plugin / skills framework cho coding agents.
+### 2. Lớp quy trình làm việc của agent
+Dùng để cải thiện cách agent làm việc, ví dụ:
+- phân tích yêu cầu trước khi code
+- lập kế hoạch trước khi sửa nhiều chỗ
+- kiểm thử trước và sau khi sửa
+- gỡ lỗi theo quy trình thay vì đoán mò
+- rà soát kết quả trước khi kết thúc
 
-Nó không chỉ là vài file markdown.
-Nó cung cấp:
-- skills
-- commands
-- agent/subagent workflows
-- auto skill activation trên một số platform
+### 3. Lớp hướng dẫn riêng của dự án
+Đây là nơi dự án nói cho agent biết:
+- repo này là gì
+- chỗ nào nhạy cảm
+- quy ước nào bắt buộc
+- cách debug, review, nghiên cứu trong repo này
 
-Ý chính: khi cài đúng vào agent platform được hỗ trợ, agent có thể tự dùng các workflow như brainstorming, planning, TDD, debugging, code review mà không cần mày phải tự soạn hết từ đầu mỗi lần.
+### 4. Lớp kiểm chứng
+Dùng để buộc agent chứng minh là nó đã làm đúng.
+Ví dụ:
+- test
+- build
+- lint
+- review
 
-## Spec-Kit là gì
-Spec-Kit là một implementation/pattern khác cho spec-first workflow. Nó không phải alias của OpenSpec và cũng không phải synonym của Harness Engineering.
+## OpenSpec nằm ở đâu?
+OpenSpec thuộc **lớp đặc tả**.
 
-## Quan hệ giữa các khái niệm
-- Harness Engineering = discipline tổng quát
-- OpenSpec = tool thật cho spec layer
-- Superpowers = plugin / skills framework thật cho agent workflow
-- Spec-Kit = implementation/pattern khác
+Nó là công cụ dùng để lưu:
+- proposal
+- design
+- tasks
+- thay đổi đã hoàn thành
+
+## Superpowers nằm ở đâu?
+Superpowers thuộc **lớp quy trình làm việc của agent**.
+
+Nó là plugin / framework giúp agent làm việc tốt hơn ở các khâu như:
+- brainstorm
+- viết kế hoạch
+- thực hiện kế hoạch
+- test-driven development
+- gỡ lỗi có hệ thống
+- code review
+
+## Spec-Kit nằm ở đâu?
+Spec-Kit cũng liên quan đến phần đặc tả và quy trình làm việc, nhưng nó là một hướng tổ chức khác.
+Nó không phải tên khác của OpenSpec, và cũng không đồng nghĩa với Harness Engineering.

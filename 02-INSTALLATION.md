@@ -1,8 +1,8 @@
-# Installation
+# Cài đặt
 
-## 1. OpenSpec
+## 1. Cài OpenSpec
 
-OpenSpec là external tool thật.
+OpenSpec là công cụ có thật dùng để quản lý đặc tả thay đổi trong dự án.
 
 ### Cài đặt
 
@@ -17,16 +17,16 @@ cd my-project
 openspec init
 ```
 
-## 2. Superpowers
+## 2. Cài Superpowers
 
-Superpowers là plugin / skills framework thật, nhưng cách cài phụ thuộc platform.
+Superpowers là plugin / framework có thật, nhưng cách cài phụ thuộc vào nền tảng đang dùng.
 
-### Claude Code official marketplace
+### Claude Code, dùng kho plugin chính thức
 ```text
 /plugin install superpowers@claude-plugins-official
 ```
 
-### Claude Code via Superpowers marketplace
+### Claude Code, dùng kho Superpowers marketplace
 ```text
 /plugin marketplace add obra/superpowers-marketplace
 /plugin install superpowers@superpowers-marketplace
@@ -38,13 +38,13 @@ Superpowers là plugin / skills framework thật, nhưng cách cài phụ thuộ
 ```
 
 ### Codex app
-Mở sidebar `Plugins` -> tìm `Superpowers` -> bấm `+` để cài.
+Mở thanh bên `Plugins`, tìm `Superpowers`, rồi bấm `+` để cài.
 
 ### OpenCode
-Làm theo install doc chính thức của repo Superpowers cho OpenCode:
+Làm theo tài liệu cài đặt chính thức của Superpowers cho OpenCode:
 - https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
 
-Theo doc hiện tại, plugin được khai báo trong `opencode.json`.
+Theo tài liệu hiện tại, plugin được khai báo trong `opencode.json`.
 
 ### GitHub Copilot CLI
 ```text
@@ -57,7 +57,8 @@ copilot plugin install superpowers@superpowers-marketplace
 gemini extensions install https://github.com/obra/superpowers
 ```
 
-## Điều quan trọng
-- Superpowers thật là plugin/framework có install path thật.
-- `project-kit/local-superpower-patterns/` trong repo này không phải official Superpowers plugin.
-- Thư mục local đó chỉ là tài liệu/pattern tham khảo.
+## Điều cần hiểu rõ
+- OpenSpec là công cụ riêng cho phần đặc tả.
+- Superpowers là plugin / framework riêng cho quy trình làm việc của agent.
+- `project-kit/local-superpower-patterns/` trong repo này không phải Superpowers chính thức.
+- Thư mục đó chỉ là tài liệu tham khảo.
