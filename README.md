@@ -46,7 +46,7 @@ Ví dụ:
 - tài liệu review
 
 Trong repo này:
-- `examples/project-docs/`
+- `examples/project-root/`
 
 ### 3.2. Đặc tả thay đổi
 Giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
@@ -87,4 +87,4 @@ Nói ngắn:
 
 - `README.md`: giải thích khái niệm chính
 - `examples/openspec/`: ví dụ cho phần đặc tả thay đổi
-- `examples/project-docs/`: ví dụ cho phần hướng dẫn riêng của dự án
+- `examples/project-root/`: ví dụ cho phần hướng dẫn riêng của dự án
