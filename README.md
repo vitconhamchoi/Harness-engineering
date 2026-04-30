@@ -83,11 +83,62 @@ Trong tầng này:
 - **Superpowers** là plugin / framework giúp agent làm việc theo workflow mạnh hơn
 
 ### 4. Kiểm chứng
-Buộc agent chứng minh là thay đổi đã đúng trước khi kết thúc.
+Mục tiêu của phần này là không để agent chỉ nói bằng miệng rằng đã xong.
+
+Kiểm chứng thường diễn ra theo các bước sau:
+
+#### Bước 1. Đặt quy tắc hoàn thành
+Trong hướng dẫn của project phải ghi rõ agent không được kết luận hoàn tất nếu chưa có kết quả kiểm tra.
 
 Ví dụ:
-- test
-- build
-- lint
-- review
+- không được nói đã xong nếu chưa chạy test
+- không được chốt thay đổi nếu build còn lỗi
+- phải kèm kết quả kiểm tra trong báo cáo cuối
+
+#### Bước 2. Buộc agent tự chạy lệnh kiểm tra
+Agent phải dùng tool hoặc shell để tự chạy các lệnh kiểm tra, thay vì để con người chạy tay.
+
+Ví dụ:
+- Spring Boot: `./mvnw test`, `./mvnw verify`
+- Gradle: `./gradlew test`, `./gradlew build`
+- Node.js: `npm test`, `npm run build`, `npm run lint`
+- .NET: `dotnet test`, `dotnet build`
+
+Nếu các lệnh này thất bại thì agent không được kết luận là thay đổi đã hoàn tất.
+
+#### Bước 3. Gắn bước kiểm tra vào workflow
+Workflow phải có checkpoint kiểm tra trước khi kết thúc.
+
+Ví dụ:
+1. phân tích yêu cầu
+2. lập kế hoạch
+3. sửa mã
+4. chạy test / build / lint
+5. rà soát lại kết quả
+6. chỉ sau đó mới được kết luận hoàn tất
+
+#### Bước 4. Dùng chặn kỹ thuật ở CI
+Đây là lớp chặn cứng, không phụ thuộc vào việc agent có trung thực hay không.
+
+Ví dụ cách làm:
+- tạo pipeline CI để chạy test, build, lint
+- bật branch protection trên GitHub hoặc GitLab
+- cấu hình required status checks
+- không cho merge nếu các check chưa xanh
+
+Ví dụ thực tế với GitHub:
+1. tạo GitHub Actions chạy `./mvnw test` hoặc lệnh tương đương
+2. bật branch protection cho `main`
+3. yêu cầu PR phải pass các check bắt buộc
+4. nếu CI fail thì PR không merge được, dù agent có nói xong
+
+#### Bước 5. Giữ báo cáo cuối có bằng chứng
+Báo cáo cuối của agent nên nêu rõ:
+- đã chạy lệnh gì
+- lệnh nào pass
+- lệnh nào fail
+- còn giới hạn gì chưa kiểm tra được
+
+Tóm lại, phần kiểm chứng không dựa vào việc con người tự chạy tay.
+Nó dựa vào việc agent tự chạy lệnh kiểm tra, workflow không cho bỏ qua bước verify, và CI chặn merge nếu chưa đạt.
 
