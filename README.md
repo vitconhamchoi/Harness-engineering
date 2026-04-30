@@ -1,5 +1,9 @@
 # Harness Engineering
 
+Repository này giải thích **Harness Engineering** là gì và nó được ghép từ những phần nào trong một dự án dùng AI coding agent.
+
+Hiểu ngắn gọn, Harness Engineering là cách bổ sung lớp điều phối xung quanh agent để agent làm việc đúng quy trình hơn, nhớ đúng ngữ cảnh hơn và tự kiểm tra kỹ hơn trước khi kết thúc.
+
 ## Diagram
 
 ```text
