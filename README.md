@@ -83,11 +83,56 @@ cd /path/to/my-project
 openspec init
 ```
 
-Lệnh chính:
-- `/opsx:propose <ten-thay-doi>`
-- `/opsx:apply`
-- `/opsx:archive`
-- `openspec update`
+Các bước thực hiện một yêu cầu với OpenSpec:
+
+### Bước 1. Tạo thay đổi mới
+Tạo một change với tên ngắn, rõ nghĩa.
+
+Ví dụ:
+```text
+/opsx:propose add-google-login
+```
+
+### Bước 2. Mô tả yêu cầu rõ hơn trong chat
+Ngay sau lệnh propose, mô tả rõ yêu cầu để agent dựng proposal, design và tasks đúng hướng.
+
+Ví dụ:
+```text
+/opsx:propose add-google-login
+
+Yêu cầu:
+- thêm đăng nhập bằng Google cho web app
+- chỉ chấp nhận email đã được Google xác thực
+- nếu email đã tồn tại thì liên kết với tài khoản cũ
+- backend xác thực Google token và phát JWT nội bộ
+- frontend thêm nút đăng nhập Google ở màn hình login
+```
+
+### Bước 3. Xem lại các file đặc tả được tạo ra
+Sau bước propose, OpenSpec thường tạo ra các file như:
+- `proposal.md`
+- `design.md`
+- `tasks.md`
+- `specs/requirements.md`
+
+Lúc này cần đọc lại và chỉnh nếu proposal hoặc design đi sai hướng.
+
+### Bước 4. Bắt đầu triển khai
+Khi proposal, design và tasks đã ổn, yêu cầu agent thực hiện:
+```text
+/opsx:apply
+```
+
+### Bước 5. Lưu thay đổi đã hoàn tất
+Khi thay đổi đã xong và đã kiểm chứng, lưu vào archive:
+```text
+/opsx:archive
+```
+
+### Bước 6. Cập nhật lại instruction của OpenSpec khi cần
+```bash
+openspec update
+```
 
 Ví dụ trong repo này:
 - `examples/project-root/openspec/`
