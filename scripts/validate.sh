@@ -15,11 +15,20 @@ ok() {
 [ -f "$ROOT/README.md" ] || fail "Missing README.md"
 ok "README.md present"
 
-[ -f "$ROOT/docs/AGENTS.md" ] || fail "Missing docs/AGENTS.md"
-ok "docs/AGENTS.md present"
+[ -f "$ROOT/project-kit/templates/AGENTS.md" ] || fail "Missing project-kit/templates/AGENTS.md"
+ok "project-kit/templates/AGENTS.md present"
 
-[ -f "$ROOT/docs/prompt-examples.md" ] || fail "Missing docs/prompt-examples.md"
-ok "docs/prompt-examples.md present"
+[ -f "$ROOT/project-kit/templates/prompt-examples.md" ] || fail "Missing project-kit/templates/prompt-examples.md"
+ok "project-kit/templates/prompt-examples.md present"
+
+[ -f "$ROOT/project-kit/templates/workflow-templates.md" ] || fail "Missing project-kit/templates/workflow-templates.md"
+ok "project-kit/templates/workflow-templates.md present"
+
+[ -f "$ROOT/project-kit/templates/security-review-template.md" ] || fail "Missing project-kit/templates/security-review-template.md"
+ok "project-kit/templates/security-review-template.md present"
+
+[ -f "$ROOT/project-kit/templates/research-template.md" ] || fail "Missing project-kit/templates/research-template.md"
+ok "project-kit/templates/research-template.md present"
 
 [ -f "$ROOT/scripts/validate.sh" ] || fail "Missing scripts/validate.sh"
 ok "scripts/validate.sh present"
@@ -32,15 +41,6 @@ ok "LICENSE present"
 
 [ -f "$ROOT/CONTRIBUTING.md" ] || fail "Missing CONTRIBUTING.md"
 ok "CONTRIBUTING.md present"
-
-[ -f "$ROOT/docs/workflow-templates.md" ] || fail "Missing docs/workflow-templates.md"
-ok "docs/workflow-templates.md present"
-
-[ -f "$ROOT/docs/security-review-template.md" ] || fail "Missing docs/security-review-template.md"
-ok "docs/security-review-template.md present"
-
-[ -f "$ROOT/docs/research-template.md" ] || fail "Missing docs/research-template.md"
-ok "docs/research-template.md present"
 
 [ -f "$ROOT/implementation-mapping.md" ] || fail "Missing implementation-mapping.md"
 ok "implementation-mapping.md present"
@@ -72,34 +72,46 @@ ok "todolist-backend review checklist present"
 [ -f "$ROOT/examples/todolist-backend/docs/prompt-examples.md" ] || fail "Missing examples/todolist-backend/docs/prompt-examples.md"
 ok "todolist-backend prompt examples present"
 
-grep -q "Harness Engineering" "$ROOT/README.md" || fail "README.md missing expected title"
+[ -f "$ROOT/examples/todolist-frontend/AGENTS.md" ] || fail "Missing examples/todolist-frontend/AGENTS.md"
+ok "todolist-frontend AGENTS example present"
+
+[ -f "$ROOT/examples/todolist-frontend/docs/debug-workflow.md" ] || fail "Missing examples/todolist-frontend/docs/debug-workflow.md"
+ok "todolist-frontend debug workflow present"
+
+[ -f "$ROOT/examples/todolist-frontend/docs/review-checklist.md" ] || fail "Missing examples/todolist-frontend/docs/review-checklist.md"
+ok "todolist-frontend review checklist present"
+
+[ -f "$ROOT/examples/todolist-frontend/docs/prompt-examples.md" ] || fail "Missing examples/todolist-frontend/docs/prompt-examples.md"
+ok "todolist-frontend prompt examples present"
+
+grep -q "Repo structure" "$ROOT/README.md" || fail "README missing expected structure section"
 ok "README title check passed"
 
-grep -q "Core Principles" "$ROOT/docs/AGENTS.md" || fail "AGENTS.md missing core principles section"
+grep -q "AGENTS" "$ROOT/project-kit/templates/AGENTS.md" || fail "AGENTS template missing expected section"
 ok "AGENTS section check passed"
 
-grep -q "Prompt Examples" "$ROOT/docs/prompt-examples.md" || fail "prompt-examples.md missing title"
+grep -q "Prompt Examples" "$ROOT/project-kit/templates/prompt-examples.md" || fail "prompt-examples template missing title"
 ok "Prompt examples title check passed"
 
-grep -q "Security Audit Workflow" "$ROOT/docs/workflow-templates.md" || fail "workflow-templates.md missing expected section"
+grep -q "Security Audit Workflow" "$ROOT/project-kit/templates/workflow-templates.md" || fail "workflow-templates missing expected section"
 ok "Workflow templates check passed"
 
-grep -q "Secret Exposure" "$ROOT/docs/security-review-template.md" || fail "security-review-template.md missing expected section"
+grep -q "Secret Exposure" "$ROOT/project-kit/templates/security-review-template.md" || fail "security-review-template missing expected section"
 ok "Security template check passed"
 
-grep -q "Research Rules" "$ROOT/docs/research-template.md" || fail "research-template.md missing expected section"
+grep -q "Research Rules" "$ROOT/project-kit/templates/research-template.md" || fail "research-template missing expected section"
 ok "Research template check passed"
 
-grep -q "Agent = Model + Harness" "$ROOT/implementation-mapping.md" || fail "implementation-mapping.md missing expected framing"
+grep -q "Agent = Model + Harness" "$ROOT/implementation-mapping.md" || fail "implementation-mapping missing expected framing"
 ok "Implementation mapping check passed"
 
-grep -q "OpenSpec" "$ROOT/implementation-comparison.md" || fail "implementation-comparison.md missing expected comparison"
+grep -q "OpenSpec" "$ROOT/implementation-comparison.md" || fail "implementation-comparison missing expected comparison"
 ok "Implementation comparison check passed"
 
-grep -q "Boundary failures" "$ROOT/failure-taxonomy.md" || fail "failure-taxonomy.md missing expected section"
+grep -q "Boundary failures" "$ROOT/failure-taxonomy.md" || fail "failure-taxonomy missing expected section"
 ok "Failure taxonomy check passed"
 
-grep -q "Level 0. Raw prompting" "$ROOT/evolution-path.md" || fail "evolution-path.md missing expected maturity model"
+grep -q "Level 0. Raw prompting" "$ROOT/evolution-path.md" || fail "evolution-path missing expected maturity model"
 ok "Evolution path check passed"
 
 grep -q "npm install -g @fission-ai/openspec@latest" "$ROOT/project-kit/openspec/README.md" || fail "project-kit openspec missing install command"
@@ -119,5 +131,8 @@ ok "todolist-backend review checklist check passed"
 
 grep -q "Prompt Examples" "$ROOT/examples/todolist-backend/docs/prompt-examples.md" || fail "todolist-backend prompt examples missing title"
 ok "todolist-backend prompt examples check passed"
+
+grep -q "Prompt Examples" "$ROOT/examples/todolist-frontend/docs/prompt-examples.md" || fail "todolist-frontend prompt examples missing title"
+ok "todolist-frontend prompt examples check passed"
 
 echo "Validation passed."

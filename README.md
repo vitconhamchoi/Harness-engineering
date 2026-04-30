@@ -1,24 +1,26 @@
 # Harness Engineering
 
-Repo này có 2 phần:
+## Repo structure
 
-## 1. Explanation ở root
-Dùng để hiểu khái niệm và cách thiết kế harness.
-
+### Root = explanation
 - `implementation-mapping.md`
 - `implementation-comparison.md`
 - `failure-taxonomy.md`
 - `evolution-path.md`
 
-## 2. Project kit trong `project-kit/`
-Dùng để copy hoặc adapt vào dự án thật.
+### `project-kit/` = things you may copy or adapt into a real project
+- `project-kit/openspec/` → real OpenSpec install/use notes + template files
+- `project-kit/local-superpower-patterns/` → local patterns, not official Superpowers package
+- `project-kit/templates/` → generic reusable project docs
 
-- `project-kit/openspec/` → hướng dẫn dùng **OpenSpec thật**
-- `project-kit/local-superpower-patterns/` → pattern local phỏng theo tinh thần superpowers, **không phải official package**
-- `project-kit/examples/` → ví dụ áp vào project thật
+### `examples/` = project-specific examples
+- `examples/todolist-backend/`
+- `examples/todolist-frontend/`
 
-## Rất quan trọng
-- **OpenSpec** là external tool thật, có lệnh cài.
-- `local-superpower-patterns/` trong repo này chỉ là local skill docs/patterns, không có nghĩa là mày đã cài official “Superpowers” package/plugin.
+### `scripts/`
+- `scripts/validate.sh`
 
-Nếu muốn nhét vào dự án thật, đừng copy cả repo. Hãy lấy thứ cần từ `project-kit/`.
+## Important
+- OpenSpec is a real external tool.
+- `local-superpower-patterns/` in this repo is not an official Superpowers plugin/package.
+- Do not copy the whole repo into a project. Only take what you need from `project-kit/` or `examples/`.
