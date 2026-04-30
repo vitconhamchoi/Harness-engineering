@@ -42,6 +42,9 @@ ok "docs/security-review-template.md present"
 [ -f "$ROOT/docs/research-template.md" ] || fail "Missing docs/research-template.md"
 ok "docs/research-template.md present"
 
+[ -f "$ROOT/docs/implementation-mapping.md" ] || fail "Missing docs/implementation-mapping.md"
+ok "docs/implementation-mapping.md present"
+
 [ -f "$ROOT/examples/todolist-backend/AGENTS.md" ] || fail "Missing examples/todolist-backend/AGENTS.md"
 ok "todolist-backend AGENTS example present"
 
@@ -71,6 +74,9 @@ ok "Security template check passed"
 
 grep -q "Research Rules" "$ROOT/docs/research-template.md" || fail "research-template.md missing expected section"
 ok "Research template check passed"
+
+grep -q "Agent = Model + Harness" "$ROOT/docs/implementation-mapping.md" || fail "implementation-mapping.md missing expected framing"
+ok "Implementation mapping check passed"
 
 grep -q "offline-first" "$ROOT/examples/todolist-backend/AGENTS.md" || fail "todolist-backend AGENTS missing expected wording"
 ok "todolist-backend AGENTS check passed"

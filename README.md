@@ -7,6 +7,20 @@ Bộ tài liệu nền để thiết kế, vận hành, và mở rộng một AI
 Harness không phải framework code để import vào app.
 Nó là **bộ luật vận hành cho AI khi làm việc với một dự án**.
 
+Công thức ngắn:
+
+```text
+Agent = Model + Harness
+```
+
+Trong đó model chỉ là phần sinh output, còn harness là toàn bộ lớp bao quanh để làm agent usable trong thực tế:
+- rules và constraints
+- tools và orchestration
+- memory / state management
+- verification và quality gates
+- observability / audit trail
+- stopping rules / recovery paths
+
 Nó giúp trả lời các câu:
 - agent được làm gì
 - khi nào phải đọc code trước khi kết luận
@@ -15,7 +29,7 @@ Nó giúp trả lời các câu:
 - output nên theo format nào
 - debug / review / research nên đi theo quy trình gì
 
-Nói dễ hiểu: harness giống **SOP + playbook + prompt pack** cho AI trong dự án.
+Nói dễ hiểu: harness giống **SOP + playbook + prompt pack + quality control layer** cho AI trong dự án.
 
 ## Mục tiêu
 
@@ -93,6 +107,19 @@ Với project này, harness được dùng để:
 - review logic offline-first / event-driven
 - giao việc cho AI mà không bị sửa bừa ở sai tầng
 - giữ cho agent luôn trace qua state, snapshot, và realtime notification trước khi kết luận
+
+## Harness Engineering vs implementation cụ thể
+
+Điểm quan trọng của repo này là:
+- **Harness Engineering** là discipline tổng quát
+- còn những bộ như **OpenSpec + Superpowers**, **Spec-Kit**, **Recursive Mode** là các implementation hoặc pattern cụ thể
+
+Nói ngắn gọn:
+- Harness Engineering = triết lý và phương pháp dựng "dây cương" cho AI
+- OpenSpec + Superpowers = một bộ dây cương cụ thể đang chạy trong một số team
+
+Xem thêm:
+- `docs/implementation-mapping.md`
 
 ## Bộ này phù hợp với ai
 

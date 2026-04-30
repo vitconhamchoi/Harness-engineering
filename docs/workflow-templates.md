@@ -1,5 +1,24 @@
 # Workflow Templates
 
+## Meta Workflow: Build or improve a harness
+
+### Goal
+Improve agent reliability by changing the harness, not only the prompt or model.
+
+### Steps
+1. Identify repeated failure pattern
+2. Classify the failure: boundary, memory, orchestration, verification, recovery, or observability
+3. Add the smallest harness mechanism that prevents recurrence
+4. Verify whether the new mechanism actually catches the old failure
+5. Keep the harness lighter if reliability gain is not worth the added complexity
+
+### Output Template
+- Repeated failure
+- Harness gap
+- Mechanism added
+- Why this is better than only changing model/prompt
+- Tradeoff introduced
+
 ## 1. Security Audit Workflow
 
 ### Goal
