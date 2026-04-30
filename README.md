@@ -4,12 +4,16 @@ Repository này giải thích cách bổ sung lớp điều phối xung quanh AI
 
 ## 1. Ba khái niệm phải tách rõ
 
-- **Model**: mô hình ngôn ngữ.
-- **Agent**: model có thể đọc file, gọi công cụ, sửa mã, chạy lệnh.
-- **Harness**: phần bao quanh agent để nạp ngữ cảnh, áp quy tắc, gắn quy trình và buộc kiểm chứng.
+- **Model**: mô hình ngôn ngữ, tức lõi sinh câu trả lời và suy luận.
+- **Agent**: hệ thống dùng model làm bộ não, đồng thời có thêm khả năng đọc file, gọi công cụ, sửa mã, chạy lệnh và làm việc nhiều bước.
+- **Harness**: lớp bao quanh agent để nạp ngữ cảnh, áp quy tắc, gắn quy trình và buộc kiểm chứng.
 
-**Harness không phải agent.**
-Harness là lớp tổ chức và điều phối cách agent làm việc.
+Nói ngắn gọn:
+- model là lõi suy luận
+- agent là hệ thống làm việc dùng model
+- harness là lớp điều phối cách agent vận hành
+
+**Harness không phải agent. Agent cũng không phải model.**
 
 ## 2. Diagram
 
