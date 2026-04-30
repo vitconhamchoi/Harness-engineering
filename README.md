@@ -83,7 +83,8 @@ Nói ngắn:
 - cần workflow cho agent -> Superpowers
 - cần cách tổ chức theo spec-first -> Spec-Kit
 
-## 5. Ví dụ dùng lại trong repo này
+## 5. Cấu trúc repo hiện tại
 
-- `examples/openspec/`
-- `examples/project-docs/`
+- `README.md`: giải thích khái niệm chính
+- `examples/openspec/`: ví dụ cho phần đặc tả thay đổi
+- `examples/project-docs/`: ví dụ cho phần hướng dẫn riêng của dự án
