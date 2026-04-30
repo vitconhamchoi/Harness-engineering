@@ -45,6 +45,15 @@ ok "docs/research-template.md present"
 [ -f "$ROOT/docs/implementation-mapping.md" ] || fail "Missing docs/implementation-mapping.md"
 ok "docs/implementation-mapping.md present"
 
+[ -f "$ROOT/docs/implementation-comparison.md" ] || fail "Missing docs/implementation-comparison.md"
+ok "docs/implementation-comparison.md present"
+
+[ -f "$ROOT/docs/failure-taxonomy.md" ] || fail "Missing docs/failure-taxonomy.md"
+ok "docs/failure-taxonomy.md present"
+
+[ -f "$ROOT/docs/evolution-path.md" ] || fail "Missing docs/evolution-path.md"
+ok "docs/evolution-path.md present"
+
 [ -f "$ROOT/examples/todolist-backend/AGENTS.md" ] || fail "Missing examples/todolist-backend/AGENTS.md"
 ok "todolist-backend AGENTS example present"
 
@@ -77,6 +86,15 @@ ok "Research template check passed"
 
 grep -q "Agent = Model + Harness" "$ROOT/docs/implementation-mapping.md" || fail "implementation-mapping.md missing expected framing"
 ok "Implementation mapping check passed"
+
+grep -q "OpenSpec" "$ROOT/docs/implementation-comparison.md" || fail "implementation-comparison.md missing expected comparison"
+ok "Implementation comparison check passed"
+
+grep -q "Boundary failures" "$ROOT/docs/failure-taxonomy.md" || fail "failure-taxonomy.md missing expected section"
+ok "Failure taxonomy check passed"
+
+grep -q "Level 0. Raw prompting" "$ROOT/docs/evolution-path.md" || fail "evolution-path.md missing expected maturity model"
+ok "Evolution path check passed"
 
 grep -q "offline-first" "$ROOT/examples/todolist-backend/AGENTS.md" || fail "todolist-backend AGENTS missing expected wording"
 ok "todolist-backend AGENTS check passed"

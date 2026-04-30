@@ -120,6 +120,9 @@ Nói ngắn gọn:
 
 Xem thêm:
 - `docs/implementation-mapping.md`
+- `docs/implementation-comparison.md`
+- `docs/failure-taxonomy.md`
+- `docs/evolution-path.md`
 
 ## Bộ này phù hợp với ai
 
