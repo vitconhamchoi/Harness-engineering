@@ -83,6 +83,16 @@ Ví dụ:
 Chúng không phải toàn bộ harness.
 Chúng chỉ là hai thành phần bên trong harness.
 
+
+## Phân biệt OpenSpec và Spec-Kit
+
+- **OpenSpec** là một công cụ cụ thể để quản lý đặc tả thay đổi trong dự án.
+- **Spec-Kit** là một cách tổ chức hoặc bộ khung làm việc theo hướng đặc tả trước.
+
+Nói ngắn gọn:
+- nếu cần một công cụ cụ thể để tạo và quản lý proposal, design, tasks thì nhìn vào **OpenSpec**
+- nếu cần nhìn ở mức cách tổ chức quy trình làm việc theo đặc tả thì nhìn vào **Spec-Kit**
+
 ## Tài liệu chính
 1. `01-FOUNDATIONS.md`
 2. `02-INSTALLATION.md`

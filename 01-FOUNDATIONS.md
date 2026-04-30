@@ -57,6 +57,16 @@ Nó cải thiện cách agent:
 - gỡ lỗi
 - rà soát mã nguồn
 
-## 7. Kết luận
+## 7. Phân biệt OpenSpec và Spec-Kit
+OpenSpec và Spec-Kit đều liên quan đến phần đặc tả, nhưng không phải là một.
+
+- **OpenSpec** là công cụ cụ thể dùng để quản lý proposal, design, tasks và thay đổi.
+- **Spec-Kit** là cách tổ chức hoặc bộ khung làm việc theo hướng đặc tả trước.
+
+Hiểu đơn giản:
+- OpenSpec trả lời câu hỏi: dùng công cụ nào để quản lý đặc tả?
+- Spec-Kit trả lời câu hỏi: tổ chức quy trình theo đặc tả trước như thế nào?
+
+## 8. Kết luận
 Harness không phải agent.
 Harness là lớp tổ chức và điều phối cách agent làm việc.
