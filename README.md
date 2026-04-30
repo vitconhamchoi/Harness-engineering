@@ -15,6 +15,12 @@ Repo này dùng để:
 - `README.md` - tổng quan và roadmap
 - `docs/AGENTS.md` - quy tắc vận hành agent/harness
 - `docs/prompt-examples.md` - prompt mẫu theo nhóm use case
+- `docs/workflow-templates.md` - template workflow cho audit, market, config, project review
+- `docs/security-review-template.md` - khung review security thực dụng
+- `docs/research-template.md` - khung research có source discipline
+- `CONTRIBUTING.md` - nguyên tắc đóng góp
+- `LICENSE` - giấy phép MIT
+- `.gitignore` - ignore cơ bản
 - `scripts/validate.sh` - kiểm tra nhanh cấu trúc file
 
 ## Roadmap 4 giai đoạn
@@ -45,9 +51,23 @@ Repo này dùng để:
 ## Cách dùng
 
 1. đọc `docs/AGENTS.md`
-2. chọn prompt phù hợp trong `docs/prompt-examples.md`
-3. chạy `scripts/validate.sh`
-4. bổ sung use case mới khi cần
+2. chọn template phù hợp trong `docs/`
+3. chọn prompt phù hợp trong `docs/prompt-examples.md`
+4. chạy `scripts/validate.sh`
+5. bổ sung use case mới khi cần
+
+## Bộ này phù hợp với ai
+
+- người đang thiết kế AI harness / agent wrapper
+- người cần quy tắc vận hành agent thực dụng
+- người muốn chuẩn hóa quy trình audit, research, market snapshot, config troubleshooting
+
+## Định hướng phát triển tiếp
+
+- thêm template cho multi-agent orchestration
+- thêm checklist cho channel behavior
+- thêm pattern cho memory discipline và compaction-safe prompting
+- thêm docs cho approval boundary và external action control
 
 ## Ghi chú
 
