@@ -1,75 +1,62 @@
 # Nền tảng
 
-## Harness Engineering là gì?
-Harness Engineering là cách tổ chức AI coding agent làm việc bài bản trong một dự án phần mềm.
+## 1. Harness là gì?
+Harness là lớp điều phối bao quanh agent.
 
-Thay vì chỉ đưa prompt rồi để agent tự làm, người làm dự án bổ sung thêm các lớp hỗ trợ để agent:
-- hiểu đúng yêu cầu
-- đi đúng quy trình
-- kiểm tra lại kết quả
-- giảm làm ẩu hoặc làm sai hướng
+Nó không trực tiếp viết mã thay cho agent.
+Nó quyết định agent được cung cấp ngữ cảnh gì, phải theo quy trình nào và phải chứng minh kết quả ra sao.
 
-Công thức ngắn:
+## 2. Harness có phải agent không?
+Không.
 
-```text
-Agent = Model + Harness
-```
+- **Model** là mô hình ngôn ngữ.
+- **Agent** là model có khả năng thao tác với file và công cụ.
+- **Harness** là lớp bao quanh agent để điều khiển cách agent làm việc.
 
-## Một harness thường gồm những gì?
-Một harness thường có bốn phần chính:
+## 3. Vì sao cần harness?
+Nếu chỉ có model hoặc agent thô, việc làm thường phụ thuộc nhiều vào prompt tạm thời trong phiên chat.
+Điều đó dễ dẫn tới:
+- thiếu ngữ cảnh
+- làm sai quy trình
+- sửa quá tay
+- kết luận xong khi chưa kiểm chứng
 
-### 1. Lớp đặc tả
-Dùng để quản lý:
-- yêu cầu
-- thiết kế
-- đầu việc
-- lịch sử thay đổi
+Harness được thêm vào để giảm các vấn đề đó.
 
-Mục tiêu là không để toàn bộ ngữ cảnh nằm hết trong phần chat.
+## 4. Một harness thường gồm gì?
 
-### 2. Lớp quy trình làm việc của agent
-Dùng để cải thiện cách agent làm việc, ví dụ:
-- phân tích yêu cầu trước khi code
-- lập kế hoạch trước khi sửa nhiều chỗ
-- kiểm thử trước và sau khi sửa
-- gỡ lỗi theo quy trình thay vì đoán mò
-- rà soát kết quả trước khi kết thúc
+### Hướng dẫn riêng của dự án
+Định nghĩa repo này là gì, quy tắc nào bắt buộc, chỗ nào nhạy cảm.
 
-### 3. Lớp hướng dẫn riêng của dự án
-Đây là nơi dự án nói cho agent biết:
-- repo này là gì
-- chỗ nào nhạy cảm
-- quy ước nào bắt buộc
-- cách debug, review, nghiên cứu trong repo này
+### Đặc tả thay đổi
+Lưu yêu cầu, thiết kế, đầu việc và lịch sử thay đổi ra ngoài phần chat.
 
-### 4. Lớp kiểm chứng
-Dùng để buộc agent chứng minh là nó đã làm đúng.
-Ví dụ:
-- test
-- build
-- lint
-- review
+### Quy trình làm việc của agent
+Buộc agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát theo cách có kiểm soát hơn.
 
-## OpenSpec nằm ở đâu?
-OpenSpec thuộc **lớp đặc tả**.
+### Kiểm chứng
+Buộc agent chạy test, build, lint hoặc review trước khi kết thúc.
 
-Nó là công cụ dùng để lưu:
+## 5. OpenSpec nằm ở đâu?
+OpenSpec là công cụ cho phần **đặc tả thay đổi**.
+
+Nó thường được dùng để lưu:
 - proposal
 - design
 - tasks
 - thay đổi đã hoàn thành
 
-## Superpowers nằm ở đâu?
-Superpowers thuộc **lớp quy trình làm việc của agent**.
+## 6. Superpowers nằm ở đâu?
+Superpowers là plugin / framework cho phần **quy trình làm việc của agent**.
 
-Nó là plugin / framework giúp agent làm việc tốt hơn ở các khâu như:
-- brainstorm
-- viết kế hoạch
-- thực hiện kế hoạch
-- test-driven development
-- gỡ lỗi có hệ thống
-- code review
+Nó cải thiện cách agent:
+- phân tích yêu cầu
+- lập kế hoạch
+- thực hiện từng bước
+- kiểm thử
+- gỡ lỗi
+- rà soát mã nguồn
 
-## Spec-Kit nằm ở đâu?
-Spec-Kit cũng liên quan đến phần đặc tả và quy trình làm việc, nhưng nó là một hướng tổ chức khác.
-Nó không phải tên khác của OpenSpec, và cũng không đồng nghĩa với Harness Engineering.
+## 7. Kết luận
+Harness không phải agent.
+Harness là lớp tổ chức và điều phối cách agent làm việc.

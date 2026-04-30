@@ -1,18 +1,15 @@
 # Harness Engineering
 
-Repository này mô tả cách tổ chức AI coding agent làm việc có kiểm soát trong một dự án phần mềm.
+Repository này giải thích cách bổ sung lớp điều phối xung quanh AI agent để agent làm việc đúng quy trình hơn trong một dự án phần mềm.
 
-## Cần hiểu ngay từ đầu
+## Định nghĩa ngắn
 
-Hình dưới đây mô tả **4 lớp khái niệm** của một harness.
+- **Model**: mô hình ngôn ngữ.
+- **Agent**: model có thể đọc file, gọi công cụ, sửa mã, chạy lệnh.
+- **Harness**: phần bao quanh agent để nạp ngữ cảnh, áp quy tắc, gắn quy trình và buộc kiểm chứng.
 
-Nó **không có nghĩa** là trong repo hoặc trong project thật sẽ luôn tồn tại đúng 4 thư mục tương ứng.
-
-Trong thực tế:
-- một lớp có thể được hiện thực bằng **tool**
-- hoặc bằng **file cấu hình**
-- hoặc bằng **tài liệu hướng dẫn**
-- hoặc bằng **quy trình làm việc**
+**Harness không phải agent.**
+Harness là phần cấu hình và điều phối cách agent làm việc.
 
 ## Mô hình tổng quát
 
@@ -21,70 +18,71 @@ Người dùng
    │
    ▼
 Harness
-   ├─ Lớp hướng dẫn dự án
-   ├─ Lớp đặc tả
-   ├─ Lớp quy trình làm việc của agent
-   └─ Lớp kiểm chứng
+   ├─ nạp hướng dẫn dự án
+   ├─ nạp đặc tả thay đổi
+   ├─ gắn quy trình làm việc
+   └─ áp bước kiểm chứng
    │
    ▼
-Agent / Model
+Agent
+   │
+   ├─ đọc file
+   ├─ sửa mã
+   ├─ chạy công cụ
+   └─ tạo thay đổi trong project
    │
    ▼
 Mã nguồn và công cụ
 ```
 
-## Trong repo này, mỗi lớp được hiện thực bằng gì?
+## Các thành phần chính của harness
 
-### 1. Lớp hướng dẫn dự án
-Mục đích: nói cho agent biết cách làm việc đúng với một repo cụ thể.
+### 1. Hướng dẫn riêng của dự án
+Mục đích: cho agent biết repo này phải được xử lý theo cách nào.
 
-Trong repo này, lớp đó được thể hiện bằng:
+Trong repo này:
 - `project-kit/templates/AGENTS.md`
 - `project-kit/templates/prompt-examples.md`
 - `project-kit/templates/workflow-templates.md`
 - `project-kit/templates/security-review-template.md`
 - `project-kit/templates/research-template.md`
 
-### 2. Lớp đặc tả
-Mục đích: lưu yêu cầu, thiết kế, đầu việc và thay đổi ra ngoài phần chat.
+### 2. Đặc tả thay đổi
+Mục đích: lưu yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
 
-Trong repo này, lớp đó được thể hiện bằng:
-- `02-INSTALLATION.md` phần cài OpenSpec
+Trong repo này:
 - `project-kit/openspec/`
+- `02-INSTALLATION.md` phần cài OpenSpec
 
 Công cụ tiêu biểu:
 - OpenSpec
 
-### 3. Lớp quy trình làm việc của agent
+### 3. Quy trình làm việc của agent
 Mục đích: cải thiện cách agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát.
 
-Trong repo này, lớp đó được thể hiện bằng:
+Trong repo này:
 - `02-INSTALLATION.md` phần cài Superpowers
-- `project-kit/local-superpower-patterns/` (chỉ là tài liệu tham khảo, không phải plugin chính thức)
+- `project-kit/local-superpower-patterns/` (tài liệu tham khảo, không phải plugin chính thức)
 
 Công cụ tiêu biểu:
 - Superpowers
 
-### 4. Lớp kiểm chứng
-Mục đích: buộc agent chứng minh là kết quả đúng trước khi kết thúc.
+### 4. Kiểm chứng
+Mục đích: buộc agent chứng minh là thay đổi đã đúng trước khi kết thúc.
 
-Trong repo này, lớp đó chủ yếu được mô tả ở mức nguyên tắc trong:
-- `01-FOUNDATIONS.md`
-- `03-HOW-TO-USE.md`
-
-Ví dụ thực tế:
+Ví dụ:
 - test
 - build
 - lint
 - review
 
-## Vai trò của từng thành phần
+## OpenSpec và Superpowers nằm ở đâu?
 
-- **Harness Engineering**: khung tổ chức tổng thể.
-- **OpenSpec**: công cụ cho lớp đặc tả.
-- **Superpowers**: plugin / framework cho lớp quy trình làm việc của agent.
-- **AGENTS.md** và tài liệu mẫu: phần hướng dẫn riêng của từng dự án.
-- **Test / build / lint / review**: phần kiểm chứng.
+- **OpenSpec** thuộc phần **đặc tả thay đổi**.
+- **Superpowers** thuộc phần **quy trình làm việc của agent**.
+
+Chúng không phải toàn bộ harness.
+Chúng chỉ là hai thành phần bên trong harness.
 
 ## Tài liệu chính
 1. `01-FOUNDATIONS.md`
