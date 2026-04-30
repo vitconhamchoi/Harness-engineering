@@ -2,72 +2,77 @@
 
 Repository này giải thích cách bổ sung lớp điều phối xung quanh AI agent để agent làm việc đúng quy trình hơn trong một dự án phần mềm.
 
-## Định nghĩa ngắn
+## 1. Ba khái niệm phải tách rõ
 
 - **Model**: mô hình ngôn ngữ.
 - **Agent**: model có thể đọc file, gọi công cụ, sửa mã, chạy lệnh.
 - **Harness**: phần bao quanh agent để nạp ngữ cảnh, áp quy tắc, gắn quy trình và buộc kiểm chứng.
 
 **Harness không phải agent.**
-Harness là phần cấu hình và điều phối cách agent làm việc.
+Harness là lớp tổ chức và điều phối cách agent làm việc.
 
-## Mô hình tổng quát
+## 2. Mô hình tổng quát
 
 ```text
 Người dùng
    │
    ▼
 Harness
-   ├─ nạp hướng dẫn dự án
-   ├─ nạp đặc tả thay đổi
-   ├─ gắn quy trình làm việc
-   └─ áp bước kiểm chứng
+   ├─ Hướng dẫn riêng của dự án
+   ├─ Đặc tả thay đổi
+   ├─ Quy trình làm việc của agent
+   └─ Kiểm chứng
    │
    ▼
 Agent
-   │
-   ├─ đọc file
-   ├─ sửa mã
-   ├─ chạy công cụ
-   └─ tạo thay đổi trong project
    │
    ▼
 Mã nguồn và công cụ
 ```
 
-## Các thành phần chính của harness
+## 3. OpenSpec và Superpowers nằm ở đâu?
 
-### 1. Hướng dẫn riêng của dự án
-Mục đích: cho agent biết repo này phải được xử lý theo cách nào.
+- **OpenSpec** nằm ở phần **đặc tả thay đổi**.
+- **Superpowers** nằm ở phần **quy trình làm việc của agent**.
 
-Trong repo này:
-- `project-kit/templates/AGENTS.md`
-- `project-kit/templates/prompt-examples.md`
-- `project-kit/templates/workflow-templates.md`
-- `project-kit/templates/security-review-template.md`
-- `project-kit/templates/research-template.md`
+Chúng không phải toàn bộ harness.
+Chúng chỉ là hai thành phần bên trong harness.
 
-### 2. Đặc tả thay đổi
-Mục đích: lưu yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
+## 4. OpenSpec và Spec-Kit khác nhau thế nào?
 
-Trong repo này:
-- `project-kit/openspec/`
-- `02-INSTALLATION.md` phần cài OpenSpec
+- **OpenSpec** là một công cụ cụ thể để quản lý proposal, design, tasks.
+- **Spec-Kit** là cách tổ chức hoặc bộ khung làm việc theo hướng đặc tả trước.
 
-Công cụ tiêu biểu:
+Nói ngắn:
+- cần **tool cụ thể** để quản lý spec -> nhìn **OpenSpec**
+- cần **cách tổ chức quy trình theo spec-first** -> nhìn **Spec-Kit**
+
+## 5. Một harness tối thiểu gồm gì?
+
+### Hướng dẫn riêng của dự án
+Cho agent biết repo này phải làm theo quy tắc nào.
+
+Ví dụ file:
+- `AGENTS.md`
+- `docs/prompt-examples.md`
+- `docs/workflow-templates.md`
+- `docs/security-review-template.md`
+- `docs/research-template.md`
+
+### Đặc tả thay đổi
+Giữ yêu cầu, thiết kế và đầu việc ra ngoài phần chat.
+
+Ví dụ công cụ:
 - OpenSpec
 
-### 3. Quy trình làm việc của agent
-Mục đích: cải thiện cách agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát.
+### Quy trình làm việc của agent
+Cải thiện cách agent phân tích, lập kế hoạch, kiểm thử, gỡ lỗi và rà soát.
 
-Trong repo này:
-- `02-INSTALLATION.md` phần cài Superpowers
-
-Công cụ tiêu biểu:
+Ví dụ công cụ:
 - Superpowers
 
-### 4. Kiểm chứng
-Mục đích: buộc agent chứng minh là thay đổi đã đúng trước khi kết thúc.
+### Kiểm chứng
+Buộc agent chứng minh là thay đổi đã đúng.
 
 Ví dụ:
 - test
@@ -75,29 +80,81 @@ Ví dụ:
 - lint
 - review
 
-## OpenSpec và Superpowers nằm ở đâu?
+## 6. Thêm harness vào project có sẵn như thế nào?
 
-- **OpenSpec** thuộc phần **đặc tả thay đổi**.
-- **Superpowers** thuộc phần **quy trình làm việc của agent**.
+Làm bốn việc:
 
-Chúng không phải toàn bộ harness.
-Chúng chỉ là hai thành phần bên trong harness.
+1. thêm hướng dẫn riêng của dự án
+2. thêm phần đặc tả thay đổi
+3. thêm quy trình làm việc của agent
+4. thêm kiểm chứng
 
+### 6.1. Thêm hướng dẫn riêng của dự án
+Copy từ repo này sang project thật:
 
-## Phân biệt OpenSpec và Spec-Kit
+- `project-kit/templates/AGENTS.md` -> `/path/to/my-project/AGENTS.md`
+- `project-kit/templates/prompt-examples.md` -> `/path/to/my-project/docs/prompt-examples.md`
+- `project-kit/templates/workflow-templates.md` -> `/path/to/my-project/docs/workflow-templates.md`
+- `project-kit/templates/security-review-template.md` -> `/path/to/my-project/docs/security-review-template.md`
+- `project-kit/templates/research-template.md` -> `/path/to/my-project/docs/research-template.md`
 
-- **OpenSpec** là một công cụ cụ thể để quản lý đặc tả thay đổi trong dự án.
-- **Spec-Kit** là một cách tổ chức hoặc bộ khung làm việc theo hướng đặc tả trước.
+### 6.2. Thêm phần đặc tả thay đổi bằng OpenSpec
 
-Nói ngắn gọn:
-- nếu cần một công cụ cụ thể để tạo và quản lý proposal, design, tasks thì nhìn vào **OpenSpec**
-- nếu cần nhìn ở mức cách tổ chức quy trình làm việc theo đặc tả thì nhìn vào **Spec-Kit**
+```bash
+npm install -g @fission-ai/openspec@latest
+cd /path/to/my-project
+openspec init
+```
 
-## Tài liệu chính
-1. `01-FOUNDATIONS.md`
-2. `02-INSTALLATION.md`
-3. `03-HOW-TO-USE.md`
+### 6.3. Thêm quy trình làm việc của agent bằng Superpowers
 
-## Phần có thể dùng lại trong project
+Superpowers là plugin / framework có thật. Cách cài phụ thuộc nền tảng.
+
+#### Claude Code
+```text
+/plugin install superpowers@claude-plugins-official
+```
+
+hoặc:
+
+```text
+/plugin marketplace add obra/superpowers-marketplace
+/plugin install superpowers@superpowers-marketplace
+```
+
+#### Cursor Agent
+```text
+/add-plugin superpowers
+```
+
+#### Codex app
+Mở `Plugins`, tìm `Superpowers`, rồi cài.
+
+#### OpenCode
+Làm theo:
+- https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+
+#### GitHub Copilot CLI
+```text
+copilot plugin marketplace add obra/superpowers-marketplace
+copilot plugin install superpowers@superpowers-marketplace
+```
+
+#### Gemini CLI
+```text
+gemini extensions install https://github.com/obra/superpowers
+```
+
+### 6.4. Thêm kiểm chứng
+Trong chính project của mày, phải xác định rõ:
+- lệnh test
+- lệnh build
+- lệnh lint
+- điều kiện được coi là hoàn thành
+
+Nếu thiếu phần này thì harness chưa hoàn chỉnh.
+
+## 7. Phần nào trong repo này có thể dùng lại?
+
 - `project-kit/openspec/`
 - `project-kit/templates/`
