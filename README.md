@@ -50,6 +50,10 @@ Ví dụ nội dung thường có:
 - lệnh build, test, lint của project
 - format báo cáo cuối mà agent phải trả về
 
+Trong project thật, phần này thường nằm ở:
+- `AGENTS.md`
+- `docs/`
+
 Ví dụ trong repo này:
 - `examples/project-root/AGENTS.md`
 - `examples/project-root/docs/`
@@ -75,6 +79,9 @@ openspec/
 - `design.md`: hướng thiết kế kỹ thuật
 - `tasks.md`: các bước triển khai
 - `requirements.md`: yêu cầu chi tiết
+
+Sau `openspec init`, project sẽ có thư mục `openspec/`.
+Các file bên trong `openspec/changes/...` thường được tạo tiếp khi dùng `/opsx:propose`.
 
 OpenSpec có hai nhóm lệnh khác nhau:
 
@@ -162,42 +169,23 @@ Một cách triển khai phần này là **Superpowers**.
 - mục tiêu tốt nhất là agent **tự** vào đúng workflow theo ngữ cảnh
 - slash command chỉ nên là **cách gọi tay khi cần ép mode**, không nên là cách dùng chính hằng ngày
 
-Ví dụ cài Superpowers:
+Nếu tập trung vào hai môi trường đang dùng nhiều là VS Code và Antigravity thì nên hiểu phần này như sau:
 
-### Claude Code
-```text
-/plugin install superpowers@claude-plugins-official
+- **VS Code**: có thể dùng Superpowers theo hướng tích hợp với Copilot ở mức workspace.
+- **Antigravity**: hiện chưa thấy tài liệu chính thức rõ về tích hợp Superpowers.
+
+Ví dụ cài Superpowers cho VS Code:
+```bash
+cd /path/to/project
+curl -fsSL https://raw.githubusercontent.com/earchibald/vsc-superpowers/main/install-superpowers.sh | bash
 ```
 
-hoặc:
-
-```text
-/plugin marketplace add obra/superpowers-marketplace
-/plugin install superpowers@superpowers-marketplace
-```
-
-### Cursor Agent
-```text
-/add-plugin superpowers
-```
-
-Cách dùng thực tế nên là:
-- user nói mục tiêu công việc bình thường
-- agent tự nhận ra cần brainstorm, viết kế hoạch, thực thi hay review
-- agent tự đi qua các bước phù hợp
+Sau khi cài, Copilot trong workspace sẽ đọc thêm instruction và prompt của Superpowers.
+Mục tiêu là agent tự vào đúng workflow theo ngữ cảnh. Slash command chỉ là cách gọi tay khi cần ép workflow.
 
 Ví dụ:
-- user: "thêm chức năng đăng nhập bằng Google"
-- agent nên tự chuyển sang bước làm rõ yêu cầu và thiết kế trước khi code
-
-- user: "debug lỗi 500 ở API tạo đơn hàng"
-- agent nên tự chuyển sang workflow gỡ lỗi có hệ thống thay vì vá bừa
-
-Slash command chỉ là cách gọi tay khi cần ép workflow.
-
-Với hai môi trường này:
-- **VS Code**: dùng được OpenSpec và có thể dùng Superpowers
-- **Antigravity**: dùng được OpenSpec; chưa thấy tài liệu chính thức rõ cho Superpowers
+- user: "thêm chức năng đăng nhập bằng Google" -> agent nên tự làm rõ yêu cầu và thiết kế trước khi code
+- user: "debug lỗi 500 ở API tạo đơn hàng" -> agent nên tự đi theo workflow gỡ lỗi có hệ thống
 
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
@@ -223,7 +211,7 @@ Kết quả mong muốn:
 ### Bước 2. Chốt bộ lệnh kiểm tra của project
 Việc phải làm:
 1. xác định project dùng lệnh nào để test, build, lint
-2. ghi chúng vào `AGENTS.md` hoặc `docs/workflow-templates.md`
+2. ghi chúng vào `AGENTS.md` hoặc `docs/workflow-templates.md` trong project
 
 Ví dụ Spring Boot dùng Maven:
 ```md
