@@ -32,7 +32,7 @@ Bắt buộc khi task liên quan đến:
 - [ ] Token/session được verify đúng cách, không chỉ kiểm tra existence
 - [ ] JWT: verify signature, không chỉ decode
 - [ ] OAuth: verify state parameter để chống CSRF
-- [ ] Password: dùng bcrypt/argon2, không md5/sha1 không salt
+- [ ] Password: dùng bcrypt/argon2, không dùng md5/sha1 hoặc hash không có salt
 - [ ] Không expose sensitive info trong error message ("User not found" vs "Invalid credentials")
 
 ### 3. Data Handling

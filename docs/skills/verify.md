@@ -11,7 +11,8 @@ Chạy test/build/lint và dán output thực tế trước khi kết luận "xo
 - Sau mỗi batch trong `execute-plan`
 
 ## Khi nào KHÔNG dùng
-Không có trường hợp nào được miễn verify trước khi commit code.
+- Thay đổi thuần documentation, comment, hoặc formatting không ảnh hưởng logic (không cần chạy test suite đầy đủ, nhưng vẫn nên chạy lint nếu có)
+- Mọi thay đổi code logic đều phải qua verify đầy đủ — không có ngoại lệ
 
 ## Quy trình bắt buộc
 1. Chạy lệnh **test** của project — dán output đầy đủ

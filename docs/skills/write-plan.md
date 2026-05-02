@@ -21,7 +21,7 @@ Chia task thành các bước 2-5 phút có file path, code snippet và lệnh v
    - Ghi code snippet hoặc pseudocode
    - Ghi lệnh verify sau task
    - Ghi output mong đợi
-4. Đảm bảo mỗi task ≤ 5 phút nếu làm tay
+4. Đảm bảo mỗi task ≤ 5 phút (ước tính cho developer đọc hiểu và review, không phải thời gian agent chạy)
 5. Lưu ra `plan.md`
 6. **Đợi xác nhận plan** trước khi execute
 

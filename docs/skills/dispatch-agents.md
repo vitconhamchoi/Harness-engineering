@@ -11,7 +11,7 @@ Xác nhận task độc lập → chạy song song → tổng hợp kết quả.
 ## Khi nào KHÔNG dùng
 - Task có dependency (A phải xong trước B mới làm được)
 - Task share cùng file và có thể conflict
-- Môi trường không support parallel agent
+- Môi trường không support parallel agent (ví dụ: agent chỉ chạy 1 session tại một thời điểm, không có concurrent execution)
 
 ## Quy trình bắt buộc
 1. **Xác nhận independence**:

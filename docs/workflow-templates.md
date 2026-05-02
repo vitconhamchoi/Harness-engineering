@@ -18,7 +18,7 @@ Agent:
 - Hỏi: chỉ web hay cả mobile?
 → Đề xuất 3 hướng với trade-off
 → Đợi xác nhận
-→ Lưu design.md
+→ Lưu design.md (ở root hoặc docs/ theo convention của project)
 ```
 
 ### Bước 2 — Lên kế hoạch (`write-plan`)

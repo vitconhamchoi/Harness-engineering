@@ -202,7 +202,7 @@ Antigravity tự đọc `AGENTS.md` khi mở workspace. Toàn bộ 14 skills c�
 
 1. Khi mở workspace, Antigravity load `AGENTS.md` vào context
 2. Agent đọc Skill Map và 14 skill definitions
-3. Khi user nói chuyện tự nhiên, agent nhận diện tình huống và trigger đúng skill
+3. Khi user nói chuyện tự nhiên, agent nhận diện tình huống và trigger đúng skill (hiệu quả phụ thuộc vào độ rõ của prompt và model đang dùng)
 4. Không cần slash command — trigger từ ngữ cảnh câu nói
 
 ### Cách trigger skill bằng ngôn ngữ tự nhiên
