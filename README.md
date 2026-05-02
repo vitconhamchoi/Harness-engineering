@@ -187,6 +187,56 @@ Ví dụ:
 - user: "thêm chức năng đăng nhập bằng Google" -> agent nên tự làm rõ yêu cầu và thiết kế trước khi code
 - user: "debug lỗi 500 ở API tạo đơn hàng" -> agent nên tự đi theo workflow gỡ lỗi có hệ thống
 
+## Dùng với Google Antigravity
+
+### Không cần cài đặt gì thêm
+
+```bash
+git clone https://github.com/vitconhamchoi/Harness-engineering
+# Mở thư mục trong Antigravity — xong
+```
+
+Antigravity tự đọc `AGENTS.md` khi mở workspace. Toàn bộ 14 skills của Superpowers đã được viết vào file đó.
+
+### Antigravity đọc AGENTS.md như thế nào
+
+1. Khi mở workspace, Antigravity load `AGENTS.md` vào context
+2. Agent đọc Skill Map và 14 skill definitions
+3. Khi user nói chuyện tự nhiên, agent nhận diện tình huống và trigger đúng skill
+4. Không cần slash command — trigger từ ngữ cảnh câu nói
+
+### Cách trigger skill bằng ngôn ngữ tự nhiên
+
+| Bạn nói | Agent tự làm |
+|---|---|
+| "thêm chức năng đăng nhập Google" | `brainstorm` → hỏi rõ → `write-plan` → `worktree` → `tdd` |
+| "debug lỗi 500 ở API" | `investigate` 4 bước → `tdd` fix → `verify` |
+| "nhận được review comment..." | `receive-review` → đánh giá → `tdd` nếu đúng |
+| "xong rồi, commit đi" | `verify` → dán output → mới commit |
+| "có 3 bug độc lập, fix song song" | `dispatch-agents` → tổng hợp |
+
+### So sánh: Superpowers cài vs dùng file này
+
+| Tính năng | Superpowers (cài đặt) | File AGENTS.md (repo này) |
+|---|---|---|
+| 14 skills có cấu trúc | ✅ | ✅ |
+| TDD bắt buộc | ✅ | ✅ |
+| Iron Law of Verification | ✅ | ✅ |
+| Trigger từ ngữ cảnh tự nhiên | ✅ | ✅ |
+| Dùng với Antigravity | ❌ | ✅ |
+| Cần cài đặt | ✅ | ❌ |
+| Cần tài khoản Claude Code / Copilot | ✅ | ❌ |
+| Hook chặn commit tự động | ✅ | ❌ (dùng CI thay thế) |
+
+### File cần đọc sau khi clone
+
+- `AGENTS.md` — entry point, Skill Map, 14 skills
+- `docs/skills/` — chi tiết từng skill
+- `docs/prompt-examples.md` — ví dụ trigger thực tế
+- `docs/workflow-templates.md` — workflow end-to-end
+
+---
+
 ## 4. Kiểm chứng
 Mục tiêu là không cho agent chỉ nói “xong rồi” mà không có bằng chứng.
 
