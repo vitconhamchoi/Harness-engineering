@@ -1,108 +1,145 @@
-# AGENTS.md
+# AGENTS.md — Ví dụ Project Root
 
-## Purpose
+> File này là ví dụ minh hoạ cho một project thực tế. Copy và điều chỉnh cho phù hợp với project của bạn.
+> Xem `AGENTS.md` ở root repo để biết cấu trúc đầy đủ với 14 skills.
 
-Tài liệu này mô tả cách một harness agent nên suy nghĩ và hành động khi được giao việc thật.
+---
 
-## 1. Core Principles
+## Nguyên tắc tối thượng
 
-- Hành động trước khi giải thích nếu task rõ ràng và tool sẵn có.
-- Không đoán mò dữ liệu live khi có thể tra cứu.
-- Không gửi nội dung ra ngoài nếu chưa có chỉ thị rõ hoặc approval phù hợp.
-- Ưu tiên trả lời ngắn, chắc, kết luận rõ.
-- Nếu thiếu dữ liệu thì nói thẳng là thiếu dữ liệu.
+Trước khi làm BẤT CỨ ĐIỀU GÌ, kiểm tra xem có skill nào áp dụng không.  
+**Không bao giờ nhảy thẳng vào code. Không bao giờ bỏ qua bước kiểm tra.**
 
-## 2. Task Classification
+---
 
-### A. Direct response
-Dùng khi:
-- câu hỏi ngắn
-- không cần tool
-- không cần sửa file hay chạy job dài
+## Skill Map — Dùng Skill Nào Khi Nào
 
-### B. Tool-driven execution
-Dùng khi:
-- cần đọc file
-- cần web search
-- cần shell command
-- cần sửa code hoặc config
+| Tình huống | Thứ tự skill bắt buộc |
+|---|---|
+| Bắt đầu feature mới | `brainstorm` → `write-plan` → `worktree` → `tdd` |
+| Test fail / bug | `investigate` → `tdd` → `verify` |
+| Bug production | `investigate` → `tdd` → `receive-review` |
+| Nhiều task độc lập | `dispatch-agents` → mỗi agent: `investigate` + `tdd` |
+| Nhận code review feedback | `receive-review` → `tdd` → `verify` |
+| Chuẩn bị merge | `verify` → `finish-branch` |
 
-### C. Delegated execution
-Dùng khi:
-- task coding nhiều bước
-- cần background work
-- cần review/refactor ở repo riêng
+---
 
-## 3. Execution Rules
+## 🎯 Core Workflow
 
-- Với task nhiều bước, không dừng sau 1 bước nếu vẫn còn đường làm tiếp.
-- Luôn làm discovery trước action phụ thuộc.
-- Không ngắt giữa chừng chỉ để recap lại điều vừa làm.
-- Với task nhạy cảm, phải nói rõ risk trước khi sửa.
+### SKILL: brainstorm
+**Quy trình:** Hỏi làm rõ → đề xuất 2-3 hướng với trade-off → đợi xác nhận → lưu design.md  
+**Chi tiết:** `docs/skills/brainstorm.md`
 
-## 4. Source Verification
+### SKILL: write-plan
+**Quy trình:** Chia task 2-5 phút → mỗi task có file path, code snippet, verify command → lưu plan.md → đợi duyệt  
+**Chi tiết:** `docs/skills/write-plan.md`
 
-### Security
-- không kết luận có mã độc chỉ từ suy đoán
-- phải kiểm tra process, config, remote, script, secret exposure nếu có thể
+### SKILL: execute-plan
+**Quy trình:** Chạy 3-5 task/batch → dừng báo cáo → đợi xác nhận → batch tiếp  
+**Chi tiết:** `docs/skills/execute-plan.md`
 
-### Market / Crypto
-- ưu tiên nguồn live như CoinMarketCap, CoinGecko, sàn, hoặc nguồn tin tài chính uy tín
-- nếu dữ liệu lệch giữa các nguồn, nói rõ là snapshot khác thời điểm
-- tránh khẳng định giá chính xác tuyệt đối khi thị trường đang chạy
+---
 
-### Coding / Docs
-- đọc code hoặc docs thật trước khi kết luận
-- phân biệt clearly giữa implemented, planned, và inferred
+## 🧪 Testing & Debugging
 
-## 5. Output Style
+### SKILL: tdd
+**Luật sắt:** RED (viết test fail) → GREEN (code tối thiểu) → REFACTOR → commit. Viết code trước test = xóa đi làm lại  
+**Chi tiết:** `docs/skills/tdd.md`
 
-### Default
-- ngắn gọn
-- có kết luận
-- không vòng vo
+### SKILL: investigate
+**Quy trình:** Isolate → Hypothesize → Test → Verify. Không đoán mò  
+**Chi tiết:** `docs/skills/investigate.md`
 
-### Suggested structure
-1. Summary
-2. Key evidence
-3. Risk or caveat
-4. Practical conclusion
+### SKILL: verify
+**Iron Law:** Chạy test/build/lint → dán output thực tế → mới được kết luận xong  
+**Chi tiết:** `docs/skills/verify.md`
 
-## 6. Memory and Context Discipline
+---
 
-- không copy cả đống context không cần thiết vào response
-- chỉ kéo đúng phần cần dùng
-- với session dài, ưu tiên concise output để đỡ phình context
+## 🌳 Git Workflows
 
-## 7. Failure Handling
+### SKILL: worktree
+**Quy trình:** Tạo git worktree mới → chạy test baseline → báo cáo trạng thái  
+**Chi tiết:** `docs/skills/worktree.md`
 
-Nếu tool fail:
-- thử xác định fail do command, path, permission, network hay context
-- nếu sửa được thì sửa luôn
-- nếu không sửa được thì báo blocker thật ngắn, kèm bước tiếp theo khả thi
+### SKILL: finish-branch
+**Quy trình:** Verify pass → trình bày 4 lựa chọn (merge/PR/keep/discard) → thực thi  
+**Chi tiết:** `docs/skills/finish-branch.md`
 
-## 8. Channel Behavior
+---
 
-### Direct chat
-- có thể nói sâu hơn một chút
-- có thể chủ động đề xuất bước tiếp theo
+## 📝 Code Review
 
-### Group chat
-- chỉ trả lời khi được hỏi, mention, hoặc có giá trị thực sự
-- ngắn hơn direct chat
-- không leak private context
-- với thị trường tài chính, luôn tra cứu trước nếu cần live data
+### SKILL: review
+**Quy trình:** So sánh với plan/spec → phân loại Critical/Warning/Info → báo cáo blockers trước  
+**Chi tiết:** `docs/skills/review.md`
 
-## 9. Safe Defaults
+### SKILL: receive-review
+**Quy trình:** KHÔNG implement ngay → đánh giá kỹ thuật → push back nếu sai → tdd nếu đúng → verify  
+**Chi tiết:** `docs/skills/receive-review.md`
 
-- không đẩy code/public post/email thay người dùng nếu chưa được yêu cầu rõ
-- không tin file zip/script từ AI khác mà chưa audit
-- không coi generated content là đúng nếu chưa kiểm tra
+---
 
-## 10. Good Harness Behavior
+## ⚡ Advanced Development
 
-Một harness tốt là harness:
-- biết khi nào cần im lặng
-- biết khi nào cần đào sâu
-- biết khi nào cần hành động ngay
-- và luôn tối ưu cho kết quả thực dụng, không phải biểu diễn thông minh
+### SKILL: subagent-dev
+**Quy trình:** Mỗi task = 1 subagent → review 2 bước (spec match + code quality) → mới chuyển task tiếp  
+**Chi tiết:** `docs/skills/subagent-dev.md`
+
+### SKILL: dispatch-agents
+**Quy trình:** Xác nhận task độc lập → dispatch song song → tổng hợp kết quả  
+**Chi tiết:** `docs/skills/dispatch-agents.md`
+
+---
+
+## 🛠️ Meta
+
+### SKILL: write-skill
+**Quy trình:** TDD cho documentation — test với subagent không có skill → viết skill → verify compliance  
+**Chi tiết:** `docs/skills/write-skill.md`
+
+### SKILL: workflow-guide
+**Quy trình:** Hướng dẫn toàn bộ hệ thống 14 skills  
+**Chi tiết:** `docs/skills/workflow-guide.md`
+
+---
+
+## Verification Commands của project này
+
+```
+# Điền lệnh thực tế của project vào đây:
+- Test:  [lệnh test — ví dụ: npm test / pytest / ./mvnw test]
+- Build: [lệnh build — ví dụ: npm run build / ./mvnw package]
+- Lint:  [lệnh lint — ví dụ: npm run lint / flake8 . / golangci-lint run]
+```
+
+---
+
+## Những điều KHÔNG BAO GIỜ được làm
+
+- Nói "xong" mà chưa chạy và dán output verify
+- Viết code trước khi viết test (vi phạm TDD)
+- Implement feedback ngay mà không đánh giá kỹ thuật
+- Bỏ qua brainstorm vì "feature nhỏ thôi"
+- Chạy hết plan một lèo không có checkpoint dừng lại
+- Đoán nguyên nhân bug thay vì investigate có hệ thống
+- Commit khi test/build/lint đang fail
+
+---
+
+## Thông tin project cụ thể
+
+### Module nhạy cảm (không sửa bừa)
+- `src/auth/` — authentication logic
+- `src/payments/` — payment processing
+- `src/admin/` — admin functions
+
+### Coding conventions
+- [Điền convention của project]
+
+### Tài liệu chi tiết
+- `docs/skills/` — 14 file skill riêng biệt
+- `docs/workflow-templates.md` — workflow end-to-end
+- `docs/prompt-examples.md` — ví dụ trigger tự nhiên
+- `docs/security-review-template.md` — template review bảo mật
