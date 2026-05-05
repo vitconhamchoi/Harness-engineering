@@ -1,5 +1,0 @@
-- [ ] Khảo sát cấu trúc docs hiện có
-- [ ] Tạo tài liệu Data Governance (diagram + design flow)
-- [ ] Link tài liệu từ README
-- [ ] Kiểm tra format/markdown nhanh
-- [ ] Push thay đổi lên PR
