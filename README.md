@@ -34,10 +34,6 @@ Mã nguồn và công cụ
 - **Agent**: hệ thống dùng model, đồng thời có tool để đọc file, sửa mã và chạy lệnh.
 - **Harness**: lớp bao quanh agent để nạp ngữ cảnh, gắn quy trình và áp kiểm chứng.
 
-## Tài liệu liên quan
-
-- `docs/data-governance.md` — tài liệu riêng về data governance (diagram + design flow cho dữ liệu)
-
 
 ## 1. Hướng dẫn riêng của dự án
 Dùng để nói cho agent biết repo này phải được xử lý như thế nào.
